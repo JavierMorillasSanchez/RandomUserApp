@@ -12,7 +12,7 @@ class RandomUserUseCase {
     val LOG_TAG = "RandomUserUseCase"
 
     //This call doesn´t need retrofit to get data from json
-    fun fetchCurrencyData(): Thread {
+    fun fetchRandomUserData(): Thread {
 
         return Thread{
 

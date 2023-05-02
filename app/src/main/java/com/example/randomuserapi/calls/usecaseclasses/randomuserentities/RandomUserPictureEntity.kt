@@ -2,7 +2,7 @@ package com.example.randomuserapi.calls.usecaseclasses.randomuserentities
 
 import com.google.gson.annotations.SerializedName
 
-class RandomUserPictureEntity(
+data class RandomUserPictureEntity(
     @SerializedName("large")
     val large: String?,
     @SerializedName("medium")
