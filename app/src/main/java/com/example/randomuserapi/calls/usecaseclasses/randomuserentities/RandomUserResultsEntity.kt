@@ -6,5 +6,11 @@ class RandomUserResultsEntity(
     @SerializedName("gender")
     val gender: String?,
     @SerializedName("name")
-    val name: RandomUserNameEntity?
+    val name: RandomUserNameEntity?,
+    @SerializedName("email")
+    val email: String?,
+    @SerializedName("phone")
+    val phone: String?,
+    @SerializedName("picture")
+    val picture: RandomUserPictureEntity?
 )
