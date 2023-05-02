@@ -1,0 +1,4 @@
+package com.example.randomuserapi.features.selecnumberofusers.selectnumberofusersactivity
+
+interface SelectNumberOfUsersActivityInterface {
+}
