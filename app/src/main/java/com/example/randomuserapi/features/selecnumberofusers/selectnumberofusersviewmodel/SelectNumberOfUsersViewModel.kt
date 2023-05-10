@@ -1,6 +1,7 @@
 package com.example.randomuserapi.features.selecnumberofusers.selectnumberofusersviewmodel
 
-import android.util.Log
+import android.content.Context
+import android.widget.Toast
 import com.example.randomuserapi.calls.randomuserusecase.RandomUserUseCase
 
 class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
@@ -10,13 +11,10 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
 
     fun initializeViewModel(){
         randomUserUseCase = RandomUserUseCase()
-        callRandomUserUseCase()
     }
 
-
-    override fun callRandomUserUseCase(){
-        //Aquí llamamos a la recogida de datos
-        randomUserUseCase.fetchRandomUserData()
+    override fun navigateToListOfUsers(context: Context, numberOfUsers: Int) {
+        Toast.makeText(context, "Usuarios a mostrar: $numberOfUsers", Toast.LENGTH_SHORT).show()
     }
 
 }
