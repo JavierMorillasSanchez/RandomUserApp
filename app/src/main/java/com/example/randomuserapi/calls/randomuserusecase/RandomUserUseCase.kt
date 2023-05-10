@@ -1,6 +1,7 @@
 package com.example.randomuserapi.calls.randomuserusecase
 
 import android.util.Log
+import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
 import com.example.randomuserapi.utils.ApiUrl
 import retrofit2.Call
@@ -13,6 +14,7 @@ class RandomUserUseCase {
 
     var logTag = this::class.java.toString()
 
+    var randomUserArray = ArrayList<RandomUser>()
     private var retrofit: Retrofit? = null
 
     fun retrofitBuilderRandomUserData(): RandomUserUseCaseInterface? {
@@ -36,7 +38,8 @@ class RandomUserUseCase {
                     response: Response<RandomUserEntity>
                 ) {
                     if(response.isSuccessful){
-                        Log.d(logTag, "<-- ${response.code()}: ${response.body().toString()}")
+                        Log.d(logTag, "<-- ${response.code()}: ${fromJsonToRandomUserObject(response)}")
+                        addRandomUserToArray(fromJsonToRandomUserObject(response))
                     }
                 }
 
@@ -46,5 +49,27 @@ class RandomUserUseCase {
 
             })
     }
+
+    fun fromJsonToRandomUserObject(response: Response<RandomUserEntity>): RandomUser{
+        return RandomUser(
+            response.body()?.randomUserResultsEntity?.get(0)?.name?.title,
+            response.body()?.randomUserResultsEntity?.get(0)?.name?.firstName,
+            response.body()?.randomUserResultsEntity?.get(0)?.name?.lastName,
+            response.body()?.randomUserResultsEntity?.get(0)?.picture?.large,
+            response.body()?.randomUserResultsEntity?.get(0)?.picture?.medium,
+            response.body()?.randomUserResultsEntity?.get(0)?.picture?.thumbnail,
+            response.body()?.randomUserResultsEntity?.get(0)?.gender,
+            response.body()?.randomUserResultsEntity?.get(0)?.email,
+            response.body()?.randomUserResultsEntity?.get(0)?.phone
+            )
+    }
+
+    fun addRandomUserToArray(randomUser: RandomUser){
+        this.randomUserArray.add(randomUser)
+    }
+
+    @JvmName("getRandomUserArray1")
+    fun getRandomUserArray(): ArrayList<RandomUser> { return this.randomUserArray }
+
 
 }

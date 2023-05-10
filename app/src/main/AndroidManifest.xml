@@ -15,6 +15,9 @@
         android:theme="@style/Theme.RandomUserApi"
         tools:targetApi="31">
         <activity
+            android:name=".features.listofusers.listofusersactivity.ListOfUsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".features.selecnumberofusers.selectnumberofusersactivity.SelectNumberOfUsersActivity"
             android:exported="true">
             <intent-filter>
