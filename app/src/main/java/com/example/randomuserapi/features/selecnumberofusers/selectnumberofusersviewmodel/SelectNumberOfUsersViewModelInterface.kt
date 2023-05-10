@@ -2,5 +2,4 @@ package com.example.randomuserapi.features.selecnumberofusers.selectnumberofuser
 
 interface SelectNumberOfUsersViewModelInterface {
     fun callRandomUserUseCase()
-    fun callRandomUserUseCaseRetrofit()
 }

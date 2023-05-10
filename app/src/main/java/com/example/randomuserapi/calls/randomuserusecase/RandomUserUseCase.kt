@@ -3,41 +3,48 @@ package com.example.randomuserapi.calls.randomuserusecase
 import android.util.Log
 import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
 import com.example.randomuserapi.utils.ApiUrl
-import com.google.gson.Gson
-import java.io.InputStreamReader
-import javax.net.ssl.HttpsURLConnection
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class RandomUserUseCase {
 
-    val LOG_TAG = "RandomUserUseCase"
+    var logTag = this::class.java.toString()
 
-    //This call doesn´t need retrofit to get data from json
-    fun fetchRandomUserData(): Thread {
+    private var retrofit: Retrofit? = null
 
-        return Thread{
+    fun retrofitBuilderRandomUserData(): RandomUserUseCaseInterface? {
 
-            val url = ApiUrl.randomUserApiUrl
-            val connection = url.openConnection() as HttpsURLConnection
-
-            if(connection.responseCode == 200){
-                var inputStream = connection.inputStream
-                var inputStreamReader = InputStreamReader(inputStream, "UTF-8")
-                var request = Gson().fromJson(inputStreamReader, RandomUserEntity::class.java)
-
-                inputStreamReader.close()
-                inputStream.close()
-
-                Log.d(LOG_TAG,"Obtained data from " +
-                        "${request.randomUserResultsEntity?.get(0)?.name?.title} " +
-                        "${request.randomUserResultsEntity?.get(0)?.name?.firstName} " +
-                        "${request.randomUserResultsEntity?.get(0)?.name?.lastName}.")
-
-            } else {
-                Log.d(LOG_TAG, "Connection Failed.")
-            }
-
+        if (retrofit == null) {
+            retrofit = Retrofit.Builder()
+                .baseUrl(ApiUrl.randomUserApiUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
         }
 
+        return retrofit?.create(RandomUserUseCaseInterface::class.java)
+
+    }
+
+    fun fetchRandomUserData(){
+        RandomUserUseCase().retrofitBuilderRandomUserData()?.getUserFromRandomUserApi()
+            ?.enqueue(object: Callback<RandomUserEntity> {
+                override fun onResponse(
+                    call: Call<RandomUserEntity>,
+                    response: Response<RandomUserEntity>
+                ) {
+                    if(response.isSuccessful){
+                        Log.d(logTag, "<-- ${response.code()}: ${response.body().toString()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<RandomUserEntity>, t: Throwable) {
+                    Log.d(logTag, t.message.toString())
+                }
+
+            })
     }
 
 }
