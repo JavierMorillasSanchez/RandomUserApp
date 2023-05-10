@@ -28,7 +28,7 @@ class RandomUserUseCaseRetrofit {
 
     }
 
-    fun fetchRandomUserDaraRetrofit(){
+    fun fetchRandomUserDataRetrofit(){
         RandomUserUseCaseRetrofit().retrofitBuilderRandomUserDataRetrofit()?.getUserFromRandomUserApi()
             ?.enqueue(object: Callback<RandomUserEntity> {
                 override fun onResponse(
