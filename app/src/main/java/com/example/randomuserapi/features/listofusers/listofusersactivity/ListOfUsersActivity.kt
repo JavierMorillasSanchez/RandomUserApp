@@ -56,6 +56,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
         val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
             Toast.makeText(applicationContext, throwable.message, Toast.LENGTH_LONG).show()
+            getUserList(1)
         }
 
         val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)

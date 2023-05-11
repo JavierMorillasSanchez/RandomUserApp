@@ -22,12 +22,13 @@ class ListOfUserAdapter (
 
     override fun onBindViewHolder(holder: RandomUserViewHolder, position: Int) {
 
+        holder.cellUserId.text = (position+1).toString()
         holder.cellUserName.text = randomUserList[position].firstName
         holder.cellUserPhone.text = randomUserList[position].phone
         holder.cellUserMail.text = randomUserList[position].email
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Has pulsado a ${holder.cellUserName}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(holder.itemView.context, "Has pulsado a ${holder.cellUserName.text}", Toast.LENGTH_SHORT).show()
         }
 
     }
