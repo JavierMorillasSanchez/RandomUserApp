@@ -1,6 +1,5 @@
 package com.example.randomuserapi.calls.randomuserusecase
 
-import android.util.Log
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
 import com.example.randomuserapi.utils.ApiUrl
@@ -14,10 +13,15 @@ class RandomUserUseCase {
 
     var logTag = this::class.java.toString()
 
-    var randomUserArray = ArrayList<RandomUser>()
     private var retrofit: Retrofit? = null
 
-    fun retrofitBuilderRandomUserData(): RandomUserUseCaseInterface? {
+    private lateinit var randomUserInterface: RandomUserUseCaseInterface
+
+    init {
+        retrofitBuilderRandomUserInstance()
+    }
+
+    fun retrofitBuilderRandomUserInstance(): RandomUserUseCaseInterface? {
 
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
@@ -26,8 +30,32 @@ class RandomUserUseCase {
                 .build()
         }
 
-        return retrofit?.create(RandomUserUseCaseInterface::class.java)
+        randomUserInterface = retrofit?.create(RandomUserUseCaseInterface::class.java)!!
 
+        return randomUserInterface
+    }
+
+    suspend fun getRandomUsersFromCall(): RandomUserEntity? {
+       return retrofitBuilderRandomUserInstance()?.getRandomUserDataCall()
+    }
+
+    suspend fun fetchRandomUserDataFromApi(){
+        RandomUserUseCase().retrofitBuilderRandomUserInstance()?.getUserFromRandomUserApi()
+            ?.enqueue(object: Callback<RandomUserEntity> {
+                override fun onResponse(
+                    call: Call<RandomUserEntity>,
+                    response: Response<RandomUserEntity>
+                ) {
+                    if(response.isSuccessful){
+                        fromJsonToRandomUserObject(response)
+                        println( "<-- ${response.code()}: ${fromJsonToRandomUserObject(response)}")
+                    }
+                }
+
+                override fun onFailure(call: Call<RandomUserEntity>, t: Throwable) {
+                    println("<-- ${t.message}: ${t.cause}")
+                }
+            })
     }
 
     fun fromJsonToRandomUserObject(response: Response<RandomUserEntity>): RandomUser{

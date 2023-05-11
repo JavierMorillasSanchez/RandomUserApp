@@ -8,9 +8,7 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
     private var logTag = this::class.java.toString()
     private lateinit var randomUserUseCase: RandomUserUseCase
 
-    fun initializeViewModel(){
-        randomUserUseCase = RandomUserUseCase()
-    }
+
 
 
 
