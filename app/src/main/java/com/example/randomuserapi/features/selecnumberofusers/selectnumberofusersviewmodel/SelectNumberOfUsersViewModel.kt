@@ -10,13 +10,9 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
 
     fun initializeViewModel(){
         randomUserUseCase = RandomUserUseCase()
-        callRandomUserUseCase()
     }
 
 
-    override fun callRandomUserUseCase(){
-        //Aquí llamamos a la recogida de datos
-        randomUserUseCase.fetchRandomUserData()
-    }
+
 
 }

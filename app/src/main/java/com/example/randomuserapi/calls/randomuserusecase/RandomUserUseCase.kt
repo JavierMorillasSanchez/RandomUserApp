@@ -30,26 +30,6 @@ class RandomUserUseCase {
 
     }
 
-    fun fetchRandomUserData(){
-        RandomUserUseCase().retrofitBuilderRandomUserData()?.getUserFromRandomUserApi()
-            ?.enqueue(object: Callback<RandomUserEntity> {
-                override fun onResponse(
-                    call: Call<RandomUserEntity>,
-                    response: Response<RandomUserEntity>
-                ) {
-                    if(response.isSuccessful){
-                        Log.d(logTag, "<-- ${response.code()}: ${fromJsonToRandomUserObject(response)}")
-                        addRandomUserToArray(fromJsonToRandomUserObject(response))
-                    }
-                }
-
-                override fun onFailure(call: Call<RandomUserEntity>, t: Throwable) {
-                    Log.d(logTag, t.message.toString())
-                }
-
-            })
-    }
-
     fun fromJsonToRandomUserObject(response: Response<RandomUserEntity>): RandomUser{
         return RandomUser(
             response.body()?.randomUserResultsEntity?.get(0)?.name?.title,
@@ -63,13 +43,5 @@ class RandomUserUseCase {
             response.body()?.randomUserResultsEntity?.get(0)?.phone
             )
     }
-
-    fun addRandomUserToArray(randomUser: RandomUser){
-        this.randomUserArray.add(randomUser)
-    }
-
-    @JvmName("getRandomUserArray1")
-    fun getRandomUserArray(): ArrayList<RandomUser> { return this.randomUserArray }
-
 
 }
