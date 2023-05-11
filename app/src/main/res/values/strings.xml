@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Random User Api</string>
+    <string name="cell_number_default">0</string>
+    <string name="cell_name_default">Nombre no disponible</string>
+    <string name="cell_phone_default">Teléfono no disponible</string>
+    <string name="cell_mail_default">Mail no disponible</string>
+    <string name="random_user_list_loading">Un desconocido es un amigo que aún no has conocido.</string>
 </resources>

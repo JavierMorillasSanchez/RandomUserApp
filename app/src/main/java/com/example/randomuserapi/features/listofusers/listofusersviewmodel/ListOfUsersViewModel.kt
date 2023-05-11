@@ -30,16 +30,15 @@ class ListOfUsersViewModel: ListOfUsersViewModelInterface {
                     ) {
                         if(response.isSuccessful){
                             randomUserArray.add(randomUserUseCase.fromJsonToRandomUserObject(response))
-                            Log.d(logTag, "<-- ${response.code()}: ${randomUserUseCase.fromJsonToRandomUserObject(response)}")
+                            println( "<-- ${response.code()}: ${randomUserUseCase.fromJsonToRandomUserObject(response)}")
                         }
                     }
 
                     override fun onFailure(call: Call<RandomUserEntity>, t: Throwable) {
-                        Log.d(logTag, "<-- ${t.message}: ${t.cause}")
+                        println("<-- ${t.message}: ${t.cause}")
                     }
-
                 })
         }
     }
-    
+
 }
