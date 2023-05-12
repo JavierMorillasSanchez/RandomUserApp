@@ -19,15 +19,8 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     private lateinit var binding: ActivityListOfUsersBinding
     private lateinit var viewModel: ListOfUsersViewModel
 
-    var randomUserUseCase: RandomUserUseCase = RandomUserUseCase()
-
     lateinit var listOfUsersAdapter: ListOfUserAdapter
     lateinit var recyclerView: RecyclerView
-    lateinit var randomUserArrayList: ArrayList<RandomUser>
-
-    init {
-        getUserList(5)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,62 +31,15 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     }
 
     fun initializeUI(){
-
-        this.randomUserArrayList = ArrayList()
-
-        /*
         this.viewModel = ListOfUsersViewModel()
         this.viewModel.initializeViewModel()
-        this.viewModel.populateRandomUserArray(3)
-
-         */
-
+        this.viewModel.getUserList(5,applicationContext)
+        prepareUserList()
     }
 
-    override fun getUserList(numberOfUsers: Int) {
+    override fun prepareUserList() {
 
-        val fetchRandomUserData = Job()
-
-        val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
-            Toast.makeText(applicationContext, throwable.message, Toast.LENGTH_LONG).show()
-            getUserList(1)
-        }
-
-        val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)
-
-        for(calls in 1..numberOfUsers){
-
-            scope.launch(errorHandler){
-                var randomUser = randomUserUseCase.getRandomUsersFromCall()
-                if(randomUser != null){
-                    randomUserArrayList.add(fromEntityToUser(randomUser))
-                    println("Data obtained from ${randomUserArrayList} users.")
-                }
-                prepareUserList()
-            }
-
-        }
-
-    }
-
-    fun fromEntityToUser(userEntity: RandomUserEntity): RandomUser {
-        return RandomUser(
-            userEntity.randomUserResultsEntity?.get(0)?.name?.title,
-            userEntity.randomUserResultsEntity?.get(0)?.name?.firstName,
-            userEntity.randomUserResultsEntity?.get(0)?.name?.lastName,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.large,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.medium,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.thumbnail,
-            userEntity.randomUserResultsEntity?.get(0)?.gender,
-            userEntity.randomUserResultsEntity?.get(0)?.email,
-            userEntity.randomUserResultsEntity?.get(0)?.phone
-        )
-    }
-
-
-    override suspend fun prepareUserList() {
-
-        this.listOfUsersAdapter = ListOfUserAdapter(this.randomUserArrayList)
+        this.listOfUsersAdapter = ListOfUserAdapter(this.viewModel.getArrayOfUsersFromCall())
 
         val layoutManager = LinearLayoutManager(applicationContext)
 
@@ -105,10 +51,13 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     }
 
     override fun endLottieAndShowUserList(){
+        /*
         if(randomUserArrayList.isNotEmpty()){
             this.binding.rvRandomUserList.visibility = View.VISIBLE
             this.binding.llLoadingUserList.visibility = View.GONE
         }
+
+         */
     }
 
 }

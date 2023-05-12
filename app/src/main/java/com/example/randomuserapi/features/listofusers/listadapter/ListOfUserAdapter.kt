@@ -23,7 +23,7 @@ class ListOfUserAdapter (
     override fun onBindViewHolder(holder: RandomUserViewHolder, position: Int) {
 
         holder.cellUserId.text = (position+1).toString()
-        holder.cellUserName.text = randomUserList[position].firstName
+        holder.cellUserName.text = randomUserList[position].getRandomUserFullName()
         holder.cellUserPhone.text = randomUserList[position].phone
         holder.cellUserMail.text = randomUserList[position].email
 

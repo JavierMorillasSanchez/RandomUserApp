@@ -13,17 +13,7 @@ data class RandomUser(
     val email: String?,
     val phone: String?,
 ) {
-    fun transform(randomUserResultsEntity: RandomUserResultsEntity): RandomUser{
-        return RandomUser(
-            randomUserResultsEntity.name?.title,
-            randomUserResultsEntity.name?.firstName,
-            randomUserResultsEntity.name?.lastName,
-            randomUserResultsEntity.picture?.large,
-            randomUserResultsEntity.picture?.medium,
-            randomUserResultsEntity.picture?.thumbnail,
-            randomUserResultsEntity.gender,
-            randomUserResultsEntity.email,
-            randomUserResultsEntity.phone
-        )
+    fun getRandomUserFullName(): String{
+        return "$title $firstName $lastName"
     }
 }
