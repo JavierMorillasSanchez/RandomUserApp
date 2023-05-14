@@ -14,6 +14,7 @@ import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomU
 import com.example.randomuserapi.databinding.ActivityListOfUsersBinding
 import com.example.randomuserapi.features.listofusers.listadapter.ListOfUserAdapter
 import com.example.randomuserapi.features.listofusers.listofusersviewmodel.ListOfUsersViewModel
+import com.example.randomuserapi.utils.IntentExtrasName
 import kotlinx.coroutines.*
 
 class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
@@ -26,6 +27,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     lateinit var layoutManager: LayoutManager
 
     lateinit var arrayOfUsers: ArrayList<RandomUser>
+    var numberOfUsersToShow: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +38,12 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     }
 
     fun initializeUI(){
+
+        this.numberOfUsersToShow = intent.extras?.getInt(IntentExtrasName.numberOfUsers)
+
         this.viewModel = ListOfUsersViewModel()
         this.viewModel.initializeViewModel()
-        this.getUserList(50,applicationContext)
+        numberOfUsersToShow?.let { this.getUserList(it,applicationContext) }
         this.arrayOfUsers = ArrayList()
     }
 

@@ -5,4 +5,10 @@
     <string name="cell_phone_default">Teléfono no disponible</string>
     <string name="cell_mail_default">Mail no disponible</string>
     <string name="random_user_list_loading">Un desconocido es un amigo que aún no has conocido.</string>
+
+    <string name="select_number_of_users">Introduce la cantidad de usuarios que quieres visualizar.</string>
+    <string name="enter_number">Introduce un número.</string>
+    <string name="show_users">Mostrar usuarios</string>
+    <string name="introduce_number_of_users_to_show">Introduce el número de usuarios que quieres visualizar.</string>
+    <string name="too_many_users">Introduce hasta un máximo de 50 usuarios.</string>
 </resources>
