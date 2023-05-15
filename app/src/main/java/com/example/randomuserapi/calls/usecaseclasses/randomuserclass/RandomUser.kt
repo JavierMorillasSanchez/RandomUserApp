@@ -12,6 +12,7 @@ data class RandomUser(
     val gender: String?,
     val email: String?,
     val phone: String?,
+    val nationality: String?,
 ) {
     fun getRandomUserFullName(): String{
         return "$title $firstName $lastName"

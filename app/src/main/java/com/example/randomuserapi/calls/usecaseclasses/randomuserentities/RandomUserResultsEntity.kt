@@ -12,5 +12,7 @@ data class RandomUserResultsEntity(
     @SerializedName("phone")
     val phone: String?,
     @SerializedName("picture")
-    val picture: RandomUserPictureEntity?
+    val picture: RandomUserPictureEntity?,
+    @SerializedName("nat")
+    val nationality: String?
 )

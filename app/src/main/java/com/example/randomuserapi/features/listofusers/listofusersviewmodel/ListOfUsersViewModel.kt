@@ -20,18 +20,4 @@ class ListOfUsersViewModel: ListOfUsersViewModelInterface {
         this.randomUserUseCase = RandomUserUseCase()
     }
 
-    override fun fromEntityToUser(userEntity: RandomUserEntity): RandomUser {
-        return RandomUser(
-            userEntity.randomUserResultsEntity?.get(0)?.name?.title,
-            userEntity.randomUserResultsEntity?.get(0)?.name?.firstName,
-            userEntity.randomUserResultsEntity?.get(0)?.name?.lastName,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.large,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.medium,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.thumbnail,
-            userEntity.randomUserResultsEntity?.get(0)?.gender,
-            userEntity.randomUserResultsEntity?.get(0)?.email,
-            userEntity.randomUserResultsEntity?.get(0)?.phone
-        )
-    }
-
 }
