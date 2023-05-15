@@ -84,7 +84,6 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
             var randomUser = viewModel.randomUserUseCase.getRandomUsersFromCall()
             if(randomUser != null){
                 arrayOfUsers.add(TransformEntity.fromEntityToUser(randomUser))
-                println("Data obtained from ${arrayOfUsers.size} users.")
                 if(arrayOfUsers.size < numberOfUsers){
                     getUserList(numberOfUsers,context)
                 } else {
