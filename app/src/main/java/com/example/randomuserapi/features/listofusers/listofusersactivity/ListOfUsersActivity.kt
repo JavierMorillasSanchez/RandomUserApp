@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ import com.example.randomuserapi.databinding.ActivityListOfUsersBinding
 import com.example.randomuserapi.features.listofusers.listadapter.ListOfUserAdapter
 import com.example.randomuserapi.features.listofusers.listofusersviewmodel.ListOfUsersViewModel
 import com.example.randomuserapi.utils.IntentExtrasName
+import com.example.randomuserapi.utils.TransformEntity
 import kotlinx.coroutines.*
 
 class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
@@ -61,13 +63,10 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     }
 
     override fun endLottieAndShowUserList(){
-        /*
-        if(randomUserArrayList.isNotEmpty()){
+        if(arrayOfUsers.isNotEmpty()){
             this.binding.rvRandomUserList.visibility = View.VISIBLE
             this.binding.llLoadingUserList.visibility = View.GONE
         }
-
-         */
     }
 
     override fun getUserList(numberOfUsers: Int, context: Context) {
@@ -77,17 +76,6 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
             Toast.makeText(context, "${throwable.message}: Ha ocurrido un error y no se pueden obtener más usuarios.", Toast.LENGTH_LONG).show()
             println("Error ---> ${throwable.message}")
-            arrayOfUsers.add(RandomUser(
-                "Ms",
-                "Jhon",
-                "Doe",
-                "",
-                "",
-                "",
-                "male",
-                "jhondoe@falsemail.com",
-                "0000-000~${arrayOfUsers.size}"
-            ))
         }
 
         val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)
@@ -95,8 +83,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         scope.launch(errorHandler){
             var randomUser = viewModel.randomUserUseCase.getRandomUsersFromCall()
             if(randomUser != null){
-                arrayOfUsers.add(viewModel.fromEntityToUser(randomUser))
-                println("Data obtained from ${arrayOfUsers.size} users.")
+                arrayOfUsers.add(TransformEntity.fromEntityToUser(randomUser))
                 if(arrayOfUsers.size < numberOfUsers){
                     getUserList(numberOfUsers,context)
                 } else {

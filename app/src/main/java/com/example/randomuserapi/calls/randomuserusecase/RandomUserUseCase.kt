@@ -39,37 +39,4 @@ class RandomUserUseCase {
        return retrofitBuilderRandomUserInstance()?.getRandomUserDataCall()
     }
 
-    suspend fun fetchRandomUserDataFromApi(){
-        RandomUserUseCase().retrofitBuilderRandomUserInstance()?.getUserFromRandomUserApi()
-            ?.enqueue(object: Callback<RandomUserEntity> {
-                override fun onResponse(
-                    call: Call<RandomUserEntity>,
-                    response: Response<RandomUserEntity>
-                ) {
-                    if(response.isSuccessful){
-                        fromJsonToRandomUserObject(response)
-                        println( "<-- ${response.code()}: ${fromJsonToRandomUserObject(response)}")
-                    }
-                }
-
-                override fun onFailure(call: Call<RandomUserEntity>, t: Throwable) {
-                    println("<-- ${t.message}: ${t.cause}")
-                }
-            })
-    }
-
-    fun fromJsonToRandomUserObject(response: Response<RandomUserEntity>): RandomUser{
-        return RandomUser(
-            response.body()?.randomUserResultsEntity?.get(0)?.name?.title,
-            response.body()?.randomUserResultsEntity?.get(0)?.name?.firstName,
-            response.body()?.randomUserResultsEntity?.get(0)?.name?.lastName,
-            response.body()?.randomUserResultsEntity?.get(0)?.picture?.large,
-            response.body()?.randomUserResultsEntity?.get(0)?.picture?.medium,
-            response.body()?.randomUserResultsEntity?.get(0)?.picture?.thumbnail,
-            response.body()?.randomUserResultsEntity?.get(0)?.gender,
-            response.body()?.randomUserResultsEntity?.get(0)?.email,
-            response.body()?.randomUserResultsEntity?.get(0)?.phone
-            )
-    }
-
 }

@@ -11,4 +11,20 @@
     <string name="show_users">Mostrar usuarios</string>
     <string name="introduce_number_of_users_to_show">Introduce el número de usuarios que quieres visualizar.</string>
     <string name="too_many_users">Introduce hasta un máximo de 50 usuarios.</string>
+
+    <string name="detail_nickname_default">Apodo no disponible</string>
+    <string name="detail_nickname">Apodo:</string>
+    <string name="detail_age_default">Edad no disponible</string>
+    <string name="detail_age">Edad:</string>
+    <string name="detail_birthdate_default">Cumpleaños no disponible</string>
+    <string name="detail_birthdate">Cumpleaños:</string>
+    <string name="detail_num_address_default">Número dir. no disponible</string>
+    <string name="detail_num_address">Número:</string>
+    <string name="detail_address_default">Dirección no disponible</string>
+    <string name="detail_address">Dirección:</string>
+    <string name="detail_nat_default">Nacionalidad no disponible</string>
+    <string name="detail_nat">Nacionalidad:</string>
+    <string name="detail_mail">Mail:</string>
+    <string name="detail_phone">Teléfono:</string>
+    <string name="detail_name">Nombre:</string>
 </resources>

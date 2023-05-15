@@ -1,18 +1,26 @@
 package com.example.randomuserapi.features.listofusers.listadapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
+import com.example.randomuserapi.features.userdetail.UserDetailFragment
+import com.example.randomuserapi.utils.IntentExtrasName
 
 class ListOfUserAdapter (
     private val randomUserList: ArrayList<RandomUser>
 ): RecyclerView.Adapter<RandomUserViewHolder>() {
+
+    lateinit var userDetailFragment: UserDetailFragment
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RandomUserViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.random_user_list_cell, parent, false)
@@ -32,7 +40,14 @@ class ListOfUserAdapter (
         loadImages(randomUserList[position].pictureThumbnail, holder.cellImg, holder.itemView.context)
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Has pulsado a ${holder.cellUserName.text}", Toast.LENGTH_SHORT).show()
+            val activity = it.context as AppCompatActivity
+            val detailFragment = UserDetailFragment(randomUserList[position])
+
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.frag_user_detail, detailFragment)
+                .addToBackStack(null)
+                .setCustomAnimations(R.anim.enter_down_to_up, R.anim.exit_up_to_down)
+                .commit()
         }
 
     }
