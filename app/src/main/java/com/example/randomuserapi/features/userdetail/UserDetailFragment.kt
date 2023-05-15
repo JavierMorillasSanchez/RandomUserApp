@@ -23,9 +23,15 @@ class UserDetailFragment(
         savedInstanceState: Bundle?
     ): View? {
         this.binding = FragmentUserDetailBinding.inflate(inflater, container, false)
-        setUserInfo()
+
+        initializeUI()
 
         return this.binding.root
+    }
+
+    override fun initializeUI(){
+        this.binding.imgClose.setOnClickListener { closeDetail() }
+        setUserInfo()
     }
 
     override fun setUserInfo (){
@@ -36,15 +42,10 @@ class UserDetailFragment(
         this.binding.txtPhoneDetail.text = randomUserInfo.phone
         this.binding.txtMailDetail.text = randomUserInfo.email
         this.binding.txtNatDetail.text = randomUserInfo.nationality
-        this.binding.txtAddressDetail.text
-        this.binding.txtNumAddressDetail.text
-        this.binding.txtBirthdateDetail.text
-        this.binding.txtAgeDetail.text
-        this.binding.txtNicknameDetail.text
-
-
-
-
+        this.binding.txtAddressDetail.text = randomUserInfo.address
+        this.binding.txtNumAddressDetail.text = randomUserInfo.addressNumber
+        this.binding.txtBirthdateDetail.text = randomUserInfo.birthday
+        this.binding.txtAgeDetail.text = randomUserInfo.age
     }
 
     override fun loadImage(url: String?, userImg: ImageView, context: Context) {
@@ -54,6 +55,9 @@ class UserDetailFragment(
             .into(userImg)
     }
 
+    override fun closeDetail() {
+        requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
+    }
 
 
 

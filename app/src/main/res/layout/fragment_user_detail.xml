@@ -6,345 +6,320 @@
     android:layout_height="match_parent"
     tools:context=".features.userdetail.UserDetailFragment"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_margin="15dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:clickable="true">
 
-    <ScrollView
-        android:id="@+id/scrollview"
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/close_icon"
+        android:layout_gravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_all_detail_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_user_image_detail"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/default_user" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/ll_all_detail_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
 
-            <ImageView
-                android:id="@+id/img_user_image_detail"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/default_user"
-                android:layout_gravity="center"/>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txt_name_row"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_weight="0"
+                android:text="@string/detail_name"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/txt_name_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_name"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_name_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cell_name_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/separator"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txt_name_detail"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_phone_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_phone"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_phone_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cell_phone_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_mail_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_mail"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_mail_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cell_mail_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_nat_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_nat"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_nat_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_nat_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_address_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_address"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_address_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_address_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_num_address_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_num_address"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_num_address_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_num_address_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_birthdate_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_birthdate"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_birthdate_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_birthdate_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_age_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_age"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_age_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_age_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/txt_nickname_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_nickname"
-                    android:textSize="15sp"
-                    android:layout_weight="0"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/txt_nickname_detail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_nickname_default"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textAlignment="center"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" >
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
+                android:layout_weight="2"
+                android:text="@string/cell_name_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </ScrollView>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_phone_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/detail_phone"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txt_phone_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/cell_phone_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_mail_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/detail_mail"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txt_mail_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/cell_mail_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_nat_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/detail_nat"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txt_nat_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/detail_nat_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_address_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/detail_address"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txt_address_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/detail_address_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_num_address_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/detail_num_address"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txt_num_address_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/detail_num_address_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_birthdate_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/detail_birthdate"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txt_birthdate_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/detail_birthdate_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_age_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/detail_age"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txt_age_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/detail_age_default"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

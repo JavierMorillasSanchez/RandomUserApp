@@ -2,7 +2,6 @@ package com.example.randomuserapi.utils
 
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
-import retrofit2.Response
 
 object ApiUrl{
     const val randomUserApiUrl = "https://randomuser.me/api/"
@@ -13,20 +12,6 @@ object IntentExtrasName{
 }
 
 object TransformEntity{
-    fun fromJsonToRandomUserObject(response: Response<RandomUserEntity>): RandomUser {
-        return RandomUser(
-            response.body()?.randomUserResultsEntity?.get(0)?.name?.title,
-            response.body()?.randomUserResultsEntity?.get(0)?.name?.firstName,
-            response.body()?.randomUserResultsEntity?.get(0)?.name?.lastName,
-            response.body()?.randomUserResultsEntity?.get(0)?.picture?.large,
-            response.body()?.randomUserResultsEntity?.get(0)?.picture?.medium,
-            response.body()?.randomUserResultsEntity?.get(0)?.picture?.thumbnail,
-            response.body()?.randomUserResultsEntity?.get(0)?.gender,
-            response.body()?.randomUserResultsEntity?.get(0)?.email,
-            response.body()?.randomUserResultsEntity?.get(0)?.phone,
-            response.body()?.randomUserResultsEntity?.get(0)?.nationality
-        )
-    }
 
     fun fromEntityToUser(userEntity: RandomUserEntity): RandomUser {
         return RandomUser(
@@ -39,7 +24,11 @@ object TransformEntity{
             userEntity.randomUserResultsEntity?.get(0)?.gender,
             userEntity.randomUserResultsEntity?.get(0)?.email,
             userEntity.randomUserResultsEntity?.get(0)?.phone,
-            userEntity.randomUserResultsEntity?.get(0)?.nationality
+            userEntity.randomUserResultsEntity?.get(0)?.nationality,
+            userEntity.randomUserResultsEntity?.get(0)?.location?.street?.name,
+            userEntity.randomUserResultsEntity?.get(0)?.location?.street?.number,
+            userEntity.randomUserResultsEntity?.get(0)?.dob?.getBirthdateFormatted(),
+            userEntity.randomUserResultsEntity?.get(0)?.dob?.age,
         )
     }
 

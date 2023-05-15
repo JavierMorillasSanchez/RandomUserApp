@@ -6,4 +6,6 @@ import android.widget.ImageView
 interface UserDetailFragmentInterface {
     fun setUserInfo()
     fun loadImage(url: String?, userImg: ImageView, context: Context)
+    fun initializeUI()
+    fun closeDetail()
 }

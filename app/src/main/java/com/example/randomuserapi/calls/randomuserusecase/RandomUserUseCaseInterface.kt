@@ -6,8 +6,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface RandomUserUseCaseInterface {
-    @GET(ApiUrl.randomUserApiUrl)
-    suspend fun getUserFromRandomUserApi(): Call<RandomUserEntity>
 
     @GET(ApiUrl.randomUserApiUrl)
     suspend fun getRandomUserDataCall(): RandomUserEntity
