@@ -46,6 +46,7 @@ class ListOfUserAdapter (
             activity.supportFragmentManager.beginTransaction()
                 .replace(R.id.frag_user_detail, detailFragment)
                 .addToBackStack(null)
+                .setCustomAnimations(R.anim.enter_down_to_up, R.anim.exit_up_to_down)
                 .commit()
         }
 
