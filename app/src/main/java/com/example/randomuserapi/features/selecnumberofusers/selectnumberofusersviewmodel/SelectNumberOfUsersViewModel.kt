@@ -1,8 +1,10 @@
 package com.example.randomuserapi.features.selecnumberofusers.selectnumberofusersviewmodel
 
 import android.content.Context
-import android.widget.Toast
+import android.content.Intent
 import com.example.randomuserapi.calls.randomuserusecase.RandomUserUseCase
+import com.example.randomuserapi.features.listofusers.listofusersactivity.ListOfUsersActivity
+import com.example.randomuserapi.utils.IntentExtrasName
 
 class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
 
@@ -14,7 +16,10 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
     }
 
     override fun navigateToListOfUsers(context: Context, numberOfUsers: Int) {
-        Toast.makeText(context, "Usuarios a mostrar: $numberOfUsers", Toast.LENGTH_SHORT).show()
+        val intent = Intent(context, ListOfUsersActivity::class.java)
+        intent.putExtra(IntentExtrasName.numberOfUsers, numberOfUsers)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
     }
 
 }
