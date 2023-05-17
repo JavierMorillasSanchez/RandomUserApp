@@ -74,8 +74,8 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         val fetchRandomUserData = Job()
 
         val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
-            Toast.makeText(context, "${throwable.message}: Ha ocurrido un error y no se pueden obtener más usuarios.", Toast.LENGTH_LONG).show()
             println("Error ---> ${throwable.message}")
+            showErrorWhileLoadingUsers()
         }
 
         val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)
@@ -92,6 +92,13 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
             }
         }
 
+    }
+
+    override fun showErrorWhileLoadingUsers(){
+        this.binding.llError.visibility = View.VISIBLE
+        this.binding.rvRandomUserList.visibility = View.GONE
+        this.binding.llLoadingUserList.visibility = View.GONE
+        this.binding.btnErrorGoBack.setOnClickListener { finish() }
     }
 
 }

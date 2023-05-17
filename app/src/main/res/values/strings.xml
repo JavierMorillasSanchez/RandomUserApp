@@ -27,4 +27,6 @@
     <string name="detail_mail">Mail:</string>
     <string name="detail_phone">Teléfono:</string>
     <string name="detail_name">Nombre:</string>
+    <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
+    <string name="go_back">Ir a la pantalla anterior.</string>
 </resources>
