@@ -1,13 +1,15 @@
 package com.example.randomuserapi.features.selecnumberofusers.selectnumberofusersactivity
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.randomuserapi.R
 import com.example.randomuserapi.databinding.ActivitySelectNumberOfUsersBinding
-import com.example.randomuserapi.features.listofusers.listofusersactivity.ListOfUsersActivity
 import com.example.randomuserapi.features.selecnumberofusers.selectnumberofusersviewmodel.SelectNumberOfUsersViewModel
+import com.example.randomuserapi.utils.CustomDialog
+import com.example.randomuserapi.utils.NetworkState
+
 
 class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActivityInterface {
 
@@ -26,7 +28,9 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
     }
 
     override fun initializeUI() {
-        this.binding.btnShowUsers.setOnClickListener { checkNumberOfUsers(getNumberOfUsers()) }
+        this.binding.btnShowUsers.setOnClickListener {
+            checkNetworkStateToShowUsers()
+        }
     }
 
     override fun getNumberOfUsers(): Int {
@@ -41,6 +45,18 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
             numberOfUsers >= 51 -> Toast.makeText(applicationContext, R.string.too_many_users, Toast.LENGTH_SHORT).show()
             else -> this.viewmodel.navigateToListOfUsers(applicationContext, getNumberOfUsers())
     }
+
+    override fun checkNetworkStateToShowUsers(){
+        if(NetworkState.isOnline(applicationContext, logTag)){
+            checkNumberOfUsers(getNumberOfUsers())
+        } else {
+            CustomDialog.infoDialog(
+                this,
+                resources.getString(R.string.dialog_title_no_internet),
+                resources.getString(R.string.dialog_message_no_internet))
+        }
+    }
+
 }
 
 

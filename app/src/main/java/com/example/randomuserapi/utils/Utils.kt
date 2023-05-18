@@ -1,7 +1,14 @@
 package com.example.randomuserapi.utils
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.util.Log
+import androidx.appcompat.app.AlertDialog
+import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object ApiUrl{
     const val randomUserApiUrl = "https://randomuser.me/api/"
@@ -30,6 +37,43 @@ object TransformEntity{
             userEntity.randomUserResultsEntity?.get(0)?.dob?.getBirthdateFormatted(),
             userEntity.randomUserResultsEntity?.get(0)?.dob?.age,
         )
+    }
+
+}
+
+object NetworkState{
+    fun isOnline(context: Context, logTag: String): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager != null) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Log.i(logTag, "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    Log.i(logTag, "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    Log.i(logTag, "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+}
+
+object CustomDialog{
+
+    fun infoDialog(context: Context, title: String, message: String) {
+        MaterialAlertDialogBuilder(context)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(R.string.dialog_understand_button) { dialog, which -> {}
+            }.show()
     }
 
 }

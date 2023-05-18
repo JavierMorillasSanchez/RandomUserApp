@@ -29,4 +29,13 @@
     <string name="detail_name">Nombre:</string>
     <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
     <string name="go_back">Ir a la pantalla anterior.</string>
+    <string name="permission_needed">Necesitamos este permiso.</string>
+    <string name="permission_reasons">Para poder recoger la información de los usuarios que vamos a mostrar, necesitamos el permiso para acceder a internet.</string>
+    <string name="permission_ok">Ok</string>
+    <string name="permission_cancel">Cancelar</string>
+    <string name="permission_granted">¡Permiso concedido!</string>
+    <string name="permission_denied">Permiso degenado.</string>
+    <string name="dialog_understand_button">Entendido</string>
+    <string name="dialog_title_no_internet">No estás conectado a internet</string>
+    <string name="dialog_message_no_internet">Para utilizar esta aplicación necesitas estár conectado a internet. Prueba esta aplicación cuando vuelvas a tener conexión.</string>
 </resources>
