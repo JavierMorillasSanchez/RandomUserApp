@@ -64,7 +64,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun endLottieAndShowUserList(){
         if(arrayOfUsers.isNotEmpty()){
-            this.binding.rvRandomUserList.visibility = View.VISIBLE
+            this.binding.llUserList.visibility = View.VISIBLE
             this.binding.llLoadingUserList.visibility = View.GONE
         }
     }

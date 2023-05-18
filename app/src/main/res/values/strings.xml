@@ -38,4 +38,8 @@
     <string name="dialog_understand_button">Entendido</string>
     <string name="dialog_title_no_internet">No estás conectado a internet</string>
     <string name="dialog_message_no_internet">Para utilizar esta aplicación necesitas estár conectado a internet. Prueba esta aplicación cuando vuelvas a tener conexión.</string>
+    <string name="option_all_users">Todos</string>
+    <string name="option_male_users">Hombres</string>
+    <string name="option_female_users">Mujeres</string>
+    <string name="option_filter_by">Filtrar por:</string>
 </resources>

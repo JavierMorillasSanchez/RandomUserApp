@@ -57,7 +57,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_error"
@@ -93,17 +93,69 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_random_user_list"
+    <LinearLayout
+        android:id="@+id/ll_user_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        tools:visibility="visible"
         android:layout_margin="15dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="10"
-        tools:layout_editor_absoluteX="15dp"
-        tools:listitem="@layout/random_user_list_cell" />
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/option_filter_by"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/option_all_users"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_all_users"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/option_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_male_users"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/optio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_female_users"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_random_user_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="10"
+            tools:layout_editor_absoluteX="15dp"
+            tools:listitem="@layout/random_user_list_cell" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/frag_user_detail"
@@ -112,6 +164,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
