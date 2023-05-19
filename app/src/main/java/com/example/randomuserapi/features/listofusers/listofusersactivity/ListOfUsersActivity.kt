@@ -1,20 +1,18 @@
 package com.example.randomuserapi.features.listofusers.listofusersactivity
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.example.randomuserapi.calls.randomuserusecase.RandomUserUseCase
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
-import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
 import com.example.randomuserapi.databinding.ActivityListOfUsersBinding
 import com.example.randomuserapi.features.listofusers.listadapter.ListOfUserAdapter
 import com.example.randomuserapi.features.listofusers.listofusersviewmodel.ListOfUsersViewModel
+import com.example.randomuserapi.utils.FilterFunctions
 import com.example.randomuserapi.utils.IntentExtrasName
 import com.example.randomuserapi.utils.TransformEntity
 import kotlinx.coroutines.*
@@ -29,6 +27,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     lateinit var layoutManager: LayoutManager
 
     lateinit var arrayOfUsers: ArrayList<RandomUser>
+    lateinit var filteredArray: ArrayList<RandomUser>
     var numberOfUsersToShow: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +38,10 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         initializeUI()
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
     fun initializeUI(){
 
         this.numberOfUsersToShow = intent.extras?.getInt(IntentExtrasName.numberOfUsers)
@@ -47,11 +50,24 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         this.viewModel.initializeViewModel()
         numberOfUsersToShow?.let { this.getUserList(it,applicationContext) }
         this.arrayOfUsers = ArrayList()
+
+        this.binding.optionAllUsers.setOnClickListener {
+            prepareUserList(arrayOfUsers)
+        }
+
+        this.binding.optionMale.setOnClickListener {
+            filterMaleUserList()
+        }
+
+        this.binding.optioFemale.setOnClickListener {
+            filterFemaleUserList()
+        }
+
     }
 
-    override fun prepareUserList() {
+    override fun prepareUserList(userArrayList: ArrayList<RandomUser>) {
 
-        this.listOfUsersAdapter = ListOfUserAdapter(arrayOfUsers)
+        this.listOfUsersAdapter = ListOfUserAdapter(userArrayList)
 
         this.layoutManager = LinearLayoutManager(applicationContext)
 
@@ -64,7 +80,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun endLottieAndShowUserList(){
         if(arrayOfUsers.isNotEmpty()){
-            this.binding.rvRandomUserList.visibility = View.VISIBLE
+            this.binding.llUserList.visibility = View.VISIBLE
             this.binding.llLoadingUserList.visibility = View.GONE
         }
     }
@@ -74,8 +90,8 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         val fetchRandomUserData = Job()
 
         val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
-            Toast.makeText(context, "${throwable.message}: Ha ocurrido un error y no se pueden obtener más usuarios.", Toast.LENGTH_LONG).show()
             println("Error ---> ${throwable.message}")
+            showErrorWhileLoadingUsers()
         }
 
         val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)
@@ -87,11 +103,38 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
                 if(arrayOfUsers.size < numberOfUsers){
                     getUserList(numberOfUsers,context)
                 } else {
-                    prepareUserList()
+                    prepareUserList(arrayOfUsers)
                 }
             }
         }
 
+    }
+
+    override fun showErrorWhileLoadingUsers(){
+        this.binding.llError.visibility = View.VISIBLE
+        this.binding.rvRandomUserList.visibility = View.GONE
+        this.binding.llLoadingUserList.visibility = View.GONE
+        this.binding.btnErrorGoBack.setOnClickListener { finish() }
+    }
+
+    override fun filterMaleUserList(){
+        this.filteredArray = ArrayList()
+        for(user in arrayOfUsers){
+            if(FilterFunctions.userIsMale(user)){
+                filteredArray.add(user)
+            }
+        }
+        prepareUserList(filteredArray)
+    }
+
+    override fun filterFemaleUserList(){
+        this.filteredArray = ArrayList()
+        for(user in arrayOfUsers){
+            if(!FilterFunctions.userIsMale(user)){
+                filteredArray.add(user)
+            }
+        }
+        prepareUserList(filteredArray)
     }
 
 }

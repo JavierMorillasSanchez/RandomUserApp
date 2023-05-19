@@ -41,6 +41,7 @@ class UserDetailFragment(
         this.binding.txtNameDetail.text = randomUserInfo.getRandomUserFullName()
         this.binding.txtPhoneDetail.text = randomUserInfo.phone
         this.binding.txtMailDetail.text = randomUserInfo.email
+        this.binding.txtGenderDetail.text = randomUserInfo.gender
         this.binding.txtNatDetail.text = randomUserInfo.nationality
         this.binding.txtAddressDetail.text = randomUserInfo.address
         this.binding.txtNumAddressDetail.text = randomUserInfo.addressNumber

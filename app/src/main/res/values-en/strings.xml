@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App name -->
+    <string name="app_name" translatable="false">Random User Api</string>
+
+    <!-- Number of users activity strings -->
+    <string name="title_select_number_of_users">Enter the number of users you want to display.</string>
+    <string name="hint_enter_number">Enter a number.</string>
+    <string name="btn_show_users">Show users</string>
+    <string name="toast_introduce_number_of_users_to_show">Enter the number of users you want to display.</string>
+    <string name="toast_too_many_users">Enter up to 50 users.</string>
+
+    <!-- Default cell strings -->
+    <string name="cell_number_default">0</string>
+    <string name="cell_name_default">Name not available</string>
+    <string name="cell_phone_default">Phone not available</string>
+    <string name="cell_mail_default">Mail not available</string>
+    <string name="cell_gender_default">Gender not available</string>
+
+    <!-- Detail strings -->
+    <string name="detail_age_default">Age not available</string>
+    <string name="detail_age">Age:</string>
+    <string name="detail_birthdate_default">Birthdate not available</string>
+    <string name="detail_birthdate">Birthdate:</string>
+    <string name="detail_num_address_default">Dir. Number not available</string>
+    <string name="detail_num_address">Number:</string>
+    <string name="detail_address_default">Address not available</string>
+    <string name="detail_address">Address:</string>
+    <string name="detail_nat_default">Nationality not available</string>
+    <string name="detail_nat">Nationality:</string>
+    <string name="detail_mail_default">Mail not available</string>
+    <string name="detail_mail">Mail:</string>
+    <string name="detail_phone_default">Phone not available</string>
+    <string name="detail_phone">Phone:</string>
+    <string name="detail_name_default">Name not available</string>
+    <string name="detail_name">Name:</string>
+    <string name="detail_gender_default">Gender not available</string>
+    <string name="detail_gender">Gender:</string>
+
+    <!-- Dialog strings -->
+    <string name="dialog_title_no_internet">You are not connected to the internet</string>
+    <string name="dialog_message_no_internet">In order to use this application you need to be connected to the internet. Try this application when you are back online.</string>
+    <string name="dialog_understand_button">Got it</string>
+
+    <!-- Filter options strings -->
+    <string name="option_filter_by">Filter by:</string>
+    <string name="option_all_users">All</string>
+    <string name="option_male_users">Males</string>
+    <string name="option_female_users">Females</string>
+
+    <!-- Loading strings -->
+    <string name="random_user_list_loading">A stranger is a friend you have not met yet.</string>
+
+    <!-- Error strings -->
+    <string name="error_in_user_list">An error has occurred and the list of users cannot be displayed.</string>
+    <string name="go_back">Go to previous screen</string>
+
+</resources>

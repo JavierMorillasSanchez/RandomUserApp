@@ -1,19 +1,23 @@
 <resources>
-    <string name="app_name">Random User Api</string>
+
+    <!-- App name -->
+    <string name="app_name" translatable="false">Random User Api</string>
+
+    <!-- Number of users activity strings -->
+    <string name="title_select_number_of_users">Introduce la cantidad de usuarios que quieres visualizar.</string>
+    <string name="hint_enter_number">Introduce un número.</string>
+    <string name="btn_show_users">Mostrar usuarios</string>
+    <string name="toast_introduce_number_of_users_to_show">Introduce el número de usuarios que quieres visualizar.</string>
+    <string name="toast_too_many_users">Introduce hasta un máximo de 50 usuarios.</string>
+
+    <!-- Default cell strings -->
     <string name="cell_number_default">0</string>
     <string name="cell_name_default">Nombre no disponible</string>
     <string name="cell_phone_default">Teléfono no disponible</string>
     <string name="cell_mail_default">Mail no disponible</string>
-    <string name="random_user_list_loading">Un desconocido es un amigo que aún no has conocido.</string>
+    <string name="cell_gender_default">Género no disponible</string>
 
-    <string name="select_number_of_users">Introduce la cantidad de usuarios que quieres visualizar.</string>
-    <string name="enter_number">Introduce un número.</string>
-    <string name="show_users">Mostrar usuarios</string>
-    <string name="introduce_number_of_users_to_show">Introduce el número de usuarios que quieres visualizar.</string>
-    <string name="too_many_users">Introduce hasta un máximo de 50 usuarios.</string>
-
-    <string name="detail_nickname_default">Apodo no disponible</string>
-    <string name="detail_nickname">Apodo:</string>
+    <!-- Detail strings -->
     <string name="detail_age_default">Edad no disponible</string>
     <string name="detail_age">Edad:</string>
     <string name="detail_birthdate_default">Cumpleaños no disponible</string>
@@ -24,7 +28,31 @@
     <string name="detail_address">Dirección:</string>
     <string name="detail_nat_default">Nacionalidad no disponible</string>
     <string name="detail_nat">Nacionalidad:</string>
+    <string name="detail_mail_default">Mail no disponible</string>
     <string name="detail_mail">Mail:</string>
+    <string name="detail_phone_default">Teléfono no disponible</string>
     <string name="detail_phone">Teléfono:</string>
+    <string name="detail_name_default">Nombre no disponible</string>
     <string name="detail_name">Nombre:</string>
+    <string name="detail_gender_default">Género no disponible</string>
+    <string name="detail_gender">Género:</string>
+
+    <!-- Dialog strings -->
+    <string name="dialog_title_no_internet">No estás conectado a internet</string>
+    <string name="dialog_message_no_internet">Para utilizar esta aplicación necesitas estár conectado a internet. Prueba esta aplicación cuando vuelvas a tener conexión.</string>
+    <string name="dialog_understand_button">Entendido</string>
+
+    <!-- Filter options strings -->
+    <string name="option_filter_by">Filtrar por:</string>
+    <string name="option_all_users">Todos</string>
+    <string name="option_male_users">Hombres</string>
+    <string name="option_female_users">Mujeres</string>
+
+    <!-- Loading strings -->
+    <string name="random_user_list_loading">Un desconocido es un amigo que aún no has conocido.</string>
+
+    <!-- Error strings -->
+    <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
+    <string name="go_back">Ir a la pantalla anterior.</string>
+
 </resources>
