@@ -113,25 +113,29 @@
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/options_chip_group"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/option_all_users"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/option_all_users"/>
+                android:text="@string/option_all_users"
+                style="@style/Widget.MaterialComponents.Chip.Filter" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/option_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/option_male_users"/>
+                android:text="@string/option_male_users"
+                style="@style/Widget.MaterialComponents.Chip.Filter" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/optio_female"
+                android:id="@+id/option_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/option_female_users"/>
+                android:text="@string/option_female_users"
+                style="@style/Widget.MaterialComponents.Chip.Filter" />
 
         </com.google.android.material.chip.ChipGroup>
 

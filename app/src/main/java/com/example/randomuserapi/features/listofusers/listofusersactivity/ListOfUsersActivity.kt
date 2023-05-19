@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.databinding.ActivityListOfUsersBinding
 import com.example.randomuserapi.features.listofusers.listadapter.ListOfUserAdapter
@@ -59,10 +60,10 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
             filterMaleUserList()
         }
 
-        this.binding.optioFemale.setOnClickListener {
+        this.binding.optionFemale.setOnClickListener {
             filterFemaleUserList()
         }
-
+        
     }
 
     override fun prepareUserList(userArrayList: ArrayList<RandomUser>) {
