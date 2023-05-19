@@ -111,6 +111,7 @@
             android:textStyle="bold"/>
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/options_chip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -164,4 +165,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

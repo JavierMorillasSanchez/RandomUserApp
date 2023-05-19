@@ -77,3 +77,11 @@ object CustomDialog{
     }
 
 }
+
+object FilterFunctions{
+
+    fun userIsMale(user:RandomUser): Boolean {
+        return user.gender.equals("male")
+    }
+
+}

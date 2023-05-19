@@ -42,4 +42,6 @@
     <string name="option_male_users">Hombres</string>
     <string name="option_female_users">Mujeres</string>
     <string name="option_filter_by">Filtrar por:</string>
+    <string name="detail_gender">Género:</string>
+    <string name="cell_gender_default">Género no disponible</string>
 </resources>
