@@ -12,3 +12,5 @@ Used libraries:
 - lottie
 - glide
 - kotlin-coroutines
+
+Lastest branch: RC-1.1.2
