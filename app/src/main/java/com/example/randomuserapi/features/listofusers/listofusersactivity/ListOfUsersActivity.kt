@@ -52,16 +52,20 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         numberOfUsersToShow?.let { this.getUserList(it,applicationContext) }
         this.arrayOfUsers = ArrayList()
 
-        this.binding.optionAllUsers.setOnClickListener {
-            prepareUserList(arrayOfUsers)
-        }
-
         this.binding.optionMale.setOnClickListener {
-            filterMaleUserList()
+            if(this.binding.optionMale.isChecked){
+                filterMaleUserList()
+            } else {
+                prepareUserList(arrayOfUsers)
+            }
         }
 
         this.binding.optionFemale.setOnClickListener {
-            filterFemaleUserList()
+            if(this.binding.optionFemale.isChecked){
+                filterFemaleUserList()
+            } else {
+                prepareUserList(arrayOfUsers)
+            }
         }
         
     }
@@ -125,6 +129,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
                 filteredArray.add(user)
             }
         }
+        Toast.makeText(applicationContext, R.string.toast_showing_male_users, Toast.LENGTH_SHORT).show()
         prepareUserList(filteredArray)
     }
 
@@ -135,6 +140,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
                 filteredArray.add(user)
             }
         }
+        Toast.makeText(applicationContext, R.string.toast_showing_female_users, Toast.LENGTH_SHORT).show()
         prepareUserList(filteredArray)
     }
 

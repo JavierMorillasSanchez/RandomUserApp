@@ -54,5 +54,7 @@
     <!-- Error strings -->
     <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
     <string name="go_back">Ir a la pantalla anterior.</string>
+    <string name="toast_showing_female_users">Mostrando lista de usuarias femeninas.</string>
+    <string name="toast_showing_male_users">Mostrando lista de usuarios masculinos.</string>
 
 </resources>
