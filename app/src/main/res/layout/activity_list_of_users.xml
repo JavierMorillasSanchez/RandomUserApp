@@ -117,13 +117,6 @@
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/option_all_users"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/option_all_users"
-                style="@style/Widget.MaterialComponents.Chip.Filter" />
-
-            <com.google.android.material.chip.Chip
                 android:id="@+id/option_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
