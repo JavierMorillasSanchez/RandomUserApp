@@ -13,4 +13,4 @@ Used libraries:
 - glide
 - kotlin-coroutines
 
-Lastest branch: RC-1.1.3
+Lastest branch: RC-1.1.4
