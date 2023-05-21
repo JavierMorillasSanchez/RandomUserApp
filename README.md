@@ -5,6 +5,7 @@ Features:
 - Kotlin coroutines
 - English and Spanish translations
 - Shows up to 50 users from https://randomuser.me/
+- The full list of users can be filtered by male or female users
 - Error handling
 
 Used libraries: 
