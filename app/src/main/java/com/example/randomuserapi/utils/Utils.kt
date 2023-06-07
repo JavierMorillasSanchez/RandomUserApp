@@ -1,10 +1,10 @@
 package com.example.randomuserapi.utils
 
+import android.app.Dialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
@@ -66,22 +66,37 @@ object NetworkState{
 
 }
 
-object CustomDialog{
+object FilterFunctions{
 
-    fun infoDialog(context: Context, title: String, message: String) {
-        MaterialAlertDialogBuilder(context)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton(R.string.dialog_understand_button) { dialog, which -> {}
-            }.show()
+    fun userIsMale(user:RandomUser): Boolean {
+        return user.gender?.equals(R.string.male_filter_parameter) ?: false
     }
 
 }
 
-object FilterFunctions{
+//Implemented using Factory Pattern Design
+interface CustomDialog{
+    fun customDialog(context: Context): Dialog
+}
 
-    fun userIsMale(user:RandomUser): Boolean {
-        return user.gender.equals("male")
+abstract class DialogFactory {
+    abstract fun createDialog(): CustomDialog
+}
+
+class InfoDialog(): CustomDialog {
+
+    companion object Factory: DialogFactory() {
+        override fun createDialog(): CustomDialog = InfoDialog()
+
+    }
+
+    override fun customDialog(context: Context): Dialog {
+        return MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.dialog_title_no_internet)
+            .setMessage(R.string.dialog_message_no_internet)
+            .setPositiveButton(R.string.dialog_understand_button) { dialog, which ->
+                { }
+            }.show()
     }
 
 }

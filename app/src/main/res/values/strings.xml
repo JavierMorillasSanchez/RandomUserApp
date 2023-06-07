@@ -58,5 +58,6 @@
     <!-- Error strings -->
     <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
     <string name="go_back">Ir a la pantalla anterior.</string>
+    <string name="male_filter_parameter">male</string>
 
 </resources>
