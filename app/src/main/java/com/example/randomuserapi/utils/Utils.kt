@@ -69,7 +69,7 @@ object NetworkState{
 object FilterFunctions{
 
     fun userIsMale(user:RandomUser): Boolean {
-        return user.gender?.equals(R.string.male_filter_parameter) ?: false
+        return user.gender.equals("male")
     }
 
 }

@@ -11,10 +11,6 @@
     <string name="toast_introduce_number_of_users_to_show">Enter the number of users you want to display.</string>
     <string name="toast_too_many_users">Enter up to 50 users.</string>
 
-    <!-- List of users activity strings -->
-    <string name="toast_showing_female_users">Showing list of female users.</string>
-    <string name="toast_showing_male_users">Showing list of male users.</string>
-
     <!-- Default cell strings -->
     <string name="cell_number_default">0</string>
     <string name="cell_name_default">Name not available</string>
@@ -43,7 +39,7 @@
     <string name="detail_gender">Gender:</string>
 
     <!-- Dialog strings -->
-    <string name="dialog_title_no_internet">You are not connected to the internet</string>
+    <string name="dialog_title_no_internet">You are not connected to internet</string>
     <string name="dialog_message_no_internet">In order to use this application you need to be connected to the internet. Try this application when you are back online.</string>
     <string name="dialog_understand_button">Got it</string>
 
@@ -52,6 +48,8 @@
     <string name="option_all_users">All</string>
     <string name="option_male_users">Males</string>
     <string name="option_female_users">Females</string>
+    <string name="toast_showing_female_users">Showing female list of users.</string>
+    <string name="toast_showing_male_users">Showing male list of users.</string>
 
     <!-- Loading strings -->
     <string name="random_user_list_loading">A stranger is a friend you have not met yet.</string>
