@@ -11,6 +11,10 @@
     <string name="toast_introduce_number_of_users_to_show">Enter the number of users you want to display.</string>
     <string name="toast_too_many_users">Enter up to 50 users.</string>
 
+    <!-- List of users activity strings -->
+    <string name="toast_showing_female_users">Showing list of female users.</string>
+    <string name="toast_showing_male_users">Showing list of male users.</string>
+
     <!-- Default cell strings -->
     <string name="cell_number_default">0</string>
     <string name="cell_name_default">Name not available</string>

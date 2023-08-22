@@ -1,10 +1,10 @@
 package com.example.randomuserapi.utils
 
+import android.app.Dialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
@@ -66,22 +66,10 @@ object NetworkState{
 
 }
 
-object CustomDialog{
-
-    fun infoDialog(context: Context, title: String, message: String) {
-        MaterialAlertDialogBuilder(context)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton(R.string.dialog_understand_button) { dialog, which -> {}
-            }.show()
-    }
-
-}
-
 object FilterFunctions{
 
     fun userIsMale(user:RandomUser): Boolean {
-        return user.gender.equals("male")
+        return user.gender?.equals(R.string.male_filter_parameter) ?: false
     }
 
 }

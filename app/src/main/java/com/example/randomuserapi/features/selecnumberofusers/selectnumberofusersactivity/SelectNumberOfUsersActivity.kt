@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.randomuserapi.R
 import com.example.randomuserapi.databinding.ActivitySelectNumberOfUsersBinding
 import com.example.randomuserapi.features.selecnumberofusers.selectnumberofusersviewmodel.SelectNumberOfUsersViewModel
-import com.example.randomuserapi.utils.CustomDialog
+import com.example.randomuserapi.utils.InfoDialog
 import com.example.randomuserapi.utils.NetworkState
-
 
 class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActivityInterface {
 
@@ -50,10 +49,7 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
         if(NetworkState.isOnline(applicationContext, logTag)){
             checkNumberOfUsers(getNumberOfUsers())
         } else {
-            CustomDialog.infoDialog(
-                this,
-                resources.getString(R.string.dialog_title_no_internet),
-                resources.getString(R.string.dialog_message_no_internet))
+            InfoDialog.createDialog().customDialog(this)
         }
     }
 
