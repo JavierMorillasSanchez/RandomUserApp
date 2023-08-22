@@ -10,10 +10,6 @@
     <string name="toast_introduce_number_of_users_to_show">Introduce el número de usuarios que quieres visualizar.</string>
     <string name="toast_too_many_users">Introduce hasta un máximo de 50 usuarios.</string>
 
-    <!-- List of users activity strings -->
-    <string name="toast_showing_female_users">Mostrando lista de usuarias femeninas.</string>
-    <string name="toast_showing_male_users">Mostrando lista de usuarios masculinos.</string>
-
     <!-- Default cell strings -->
     <string name="cell_number_default">0</string>
     <string name="cell_name_default">Nombre no disponible</string>
@@ -51,6 +47,8 @@
     <string name="option_all_users">Todos</string>
     <string name="option_male_users">Hombres</string>
     <string name="option_female_users">Mujeres</string>
+    <string name="toast_showing_female_users">Mostrando lista de usuarias femeninas.</string>
+    <string name="toast_showing_male_users">Mostrando lista de usuarios masculinos.</string>
 
     <!-- Loading strings -->
     <string name="random_user_list_loading">Un desconocido es un amigo que aún no has conocido.</string>
@@ -58,6 +56,5 @@
     <!-- Error strings -->
     <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
     <string name="go_back">Ir a la pantalla anterior.</string>
-    <string name="male_filter_parameter">male</string>
 
 </resources>
