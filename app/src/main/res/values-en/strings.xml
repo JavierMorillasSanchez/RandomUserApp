@@ -39,7 +39,7 @@
     <string name="detail_gender">Gender:</string>
 
     <!-- Dialog strings -->
-    <string name="dialog_title_no_internet">You are not connected to the internet</string>
+    <string name="dialog_title_no_internet">You are not connected to internet</string>
     <string name="dialog_message_no_internet">In order to use this application you need to be connected to the internet. Try this application when you are back online.</string>
     <string name="dialog_understand_button">Got it</string>
 
@@ -55,5 +55,7 @@
     <!-- Error strings -->
     <string name="error_in_user_list">An error has occurred and the list of users cannot be displayed.</string>
     <string name="go_back">Go to previous screen</string>
+    <string name="toast_showing_female_users">Showing female list of users.</string>
+    <string name="toast_showing_male_users">Showing male list of users.</string>
 
 </resources>
