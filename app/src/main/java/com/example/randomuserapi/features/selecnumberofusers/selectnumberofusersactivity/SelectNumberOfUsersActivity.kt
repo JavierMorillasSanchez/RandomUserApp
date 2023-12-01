@@ -33,10 +33,16 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
     }
 
     override fun getNumberOfUsers(): Int {
-        if(this.binding.etxtIntroduceNumberOfUsers.text.toString().isEmpty()){
-            return 0
+
+        var numberOfUsersInput = this.binding.etxtIntroduceNumberOfUsers.text.toString()
+
+        try {
+            return Integer.parseInt(numberOfUsersInput)
+        } catch (e:Exception){
+            Toast.makeText(applicationContext, R.string.toast_too_many_users, Toast.LENGTH_SHORT).show()
         }
-        return Integer.parseInt(this.binding.etxtIntroduceNumberOfUsers.text.toString())
+
+        return 0
     }
 
     override fun checkNumberOfUsers(numberOfUsers: Int) = when {
