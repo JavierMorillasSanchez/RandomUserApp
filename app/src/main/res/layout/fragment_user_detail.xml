@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".features.userdetail.UserDetailFragment"
     android:orientation="vertical"
-    android:layout_margin="15dp"
     android:background="@color/white"
     android:clickable="true">
 

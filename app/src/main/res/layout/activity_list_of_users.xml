@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guidelineHorizontalBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@id/guidelineVerticalLeft"
-        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalTop"
+        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalMiddle"
         tools:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -25,7 +25,7 @@
             android:layout_height="350dp"
             android:scaleType="fitCenter"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guidelineHorizontalBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@id/guidelineVerticalLeft"
-        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalTop"
+        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalMiddle"
         tools:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -66,8 +66,8 @@
             android:layout_height="350dp"
             android:scaleType="fitCenter"
             android:visibility="visible"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/ll_error"
             app:layout_constraintStart_toStartOf="@id/ll_error"
             app:layout_constraintTop_toTopOf="@id/ll_error"
@@ -111,7 +111,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guidelineHorizontalBottomFilter"
         app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@id/guidelineVerticalLeft"
-        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalTop"
+        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalMiddle"
         tools:visibility="visible">
 
         <TextView
@@ -151,7 +151,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/ll_user_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -173,9 +173,9 @@
             tools:itemCount="10"
             tools:listitem="@layout/random_user_list_cell" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:id="@+id/separator"
         android:layout_width="0dp"
         android:layout_height="1dp"
@@ -189,12 +189,13 @@
 
     <FrameLayout
         android:id="@+id/frag_user_detail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineVerticalLeft"
+        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalMiddle"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalBottomFilter"
@@ -211,7 +212,7 @@
         app:layout_constraintGuide_percent="0.16" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontalTop"
+        android:id="@+id/guidelineHorizontalMiddle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
