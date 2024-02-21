@@ -33,8 +33,4 @@ class RandomUserUseCase {
         return randomUserInterface
     }
 
-    suspend fun getRandomUsersFromCall(): RandomUserEntity? {
-       return retrofitBuilderRandomUserInstance()?.getRandomUserDataCall()
-    }
-
 }

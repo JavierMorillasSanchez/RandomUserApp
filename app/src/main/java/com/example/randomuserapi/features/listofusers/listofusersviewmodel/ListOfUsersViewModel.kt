@@ -25,8 +25,6 @@ class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
     lateinit var randomUserUseCase: RandomUserUseCase
     lateinit var listOfUsers: ArrayList<RandomUser>
 
-    lateinit var usuarioDePrueba: RandomUser
-
     override fun initializeViewModel(){
         this.listOfUsers = ArrayList()
         this.randomUserUseCase = RandomUserUseCase()
@@ -38,7 +36,7 @@ class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
 
             val retrofitInstance = randomUserUseCase.retrofitBuilderRandomUserInstance()
 
-            for(number in 0..numberOfUsers) {
+            for(position in 0 until numberOfUsers) {
 
                 val response = retrofitInstance?.getRandomUserDataCall()
 
@@ -52,7 +50,8 @@ class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
                     listOfUsers.add(randomUser)
                 }
 
-                Log.d("","User recibido -> "+randomUser?.firstName+" "+randomUser?.lastName)
+                Log.d("","User en la posición "+ position + " -> "
+                        + listOfUsers[position]?.firstName+" "+listOfUsers[position]?.lastName)
 
             }
 
