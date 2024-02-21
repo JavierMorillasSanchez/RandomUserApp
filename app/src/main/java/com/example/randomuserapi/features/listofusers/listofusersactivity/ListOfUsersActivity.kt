@@ -80,7 +80,6 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         this.recyclerView.layoutManager = layoutManager
         this.recyclerView.adapter = listOfUsersAdapter
 
-        endLottieAndShowUserList()
     }
 
     override fun endLottieAndShowUserList(){
@@ -91,28 +90,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     }
 
     override fun getUserList(numberOfUsers: Int, context: Context) {
-
-        val fetchRandomUserData = Job()
-
-        val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
-            println("Error ---> ${throwable.message}")
-            showErrorWhileLoadingUsers()
-        }
-
-        val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)
-
-        scope.launch(errorHandler){
-            var randomUser = viewModel.randomUserUseCase.getRandomUsersFromCall()
-            if(randomUser != null){
-                arrayOfUsers.add(TransformEntity.fromEntityToUser(randomUser))
-                if(arrayOfUsers.size < numberOfUsers){
-                    getUserList(numberOfUsers,context)
-                } else {
-                    prepareUserList(arrayOfUsers)
-                }
-            }
-        }
-
+        this.viewModel.randomUserCall(numberOfUsers)
     }
 
     override fun showErrorWhileLoadingUsers(){

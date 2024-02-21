@@ -6,4 +6,5 @@ import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomU
 
 interface ListOfUsersViewModelInterface {
     fun initializeViewModel()
+    fun randomUserCall(numberOfUsers: Int)
 }
