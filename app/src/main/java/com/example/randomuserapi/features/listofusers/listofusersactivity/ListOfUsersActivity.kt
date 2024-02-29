@@ -2,7 +2,6 @@ package com.example.randomuserapi.features.listofusers.listofusersactivity
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -95,13 +94,8 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         this.viewModel.randomUserCall(numberOfUsers)
 
         viewModel.checkIfUserListPrepared().observe(this, Observer<Boolean> {
-
-            Log.d("","INFO - Numero de usuarios para mostrar -> "+numberOfUsersToShow)
-            Log.d("","INFO - Longitud Array -> "+arrayOfUsers.size)
-
             if(it != null){
                 arrayOfUsers.addAll(this.viewModel.getRandomUserList())
-
                 prepareUserList(arrayOfUsers)
             }
 

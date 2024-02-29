@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 
 class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
 
+    private var TAG = this.javaClass.name
     private lateinit var randomUserUseCase: RandomUserUseCase
     private var userRecievedFromApiCall: RandomUser? = null
     private var userListPrepared: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
@@ -33,17 +34,26 @@ class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
 
                 val response = retrofitInstance?.getRandomUserDataCall()
 
-                userRecievedFromApiCall = response?.let { TransformEntity.fromEntityToUser(it) }
+                if (response != null) {
+                    if(response.isSuccessful){
 
-                userRecievedFromApiCall?.let { listOfUsers.add(it) }
+                        Log.d(TAG,"INFO - Success Body -> "+response.body())
+                        Log.d(TAG,"INFO - Success Code -> "+response.code())
 
-                if(position+1 == numberOfUsers){
-                    userListPrepared.postValue(true)
+                        userRecievedFromApiCall = response.body()?.let { TransformEntity.fromEntityToUser(it) }
+
+                        userRecievedFromApiCall?.let { listOfUsers.add(it) }
+
+                        if(position+1 == numberOfUsers){
+                            userListPrepared.postValue(true)
+                        }
+
+                    } else if(!response.isSuccessful){
+                        Log.e(TAG,"INFO - Error Body -> "+response.body())
+                        Log.e(TAG,"INFO - Error Code -> "+response.code())
+
+                    }
                 }
-
-                Log.d("","INFO - Numero de usuarios solicitados -> "+numberOfUsers)
-                Log.d("","INFO - Numero de llamadas -> "+position)
-                Log.d("","INFO - User recibido -> "+userRecievedFromApiCall!!.getRandomUserFullName())
 
             }
 
