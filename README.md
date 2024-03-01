@@ -14,7 +14,7 @@ Used libraries:
 - glide
 - kotlin-coroutines
 
-Lastest branch: RC-1.1.6
+Lastest branch: RC-1.1.7
 
 Next steps: 
 - creating unit test
