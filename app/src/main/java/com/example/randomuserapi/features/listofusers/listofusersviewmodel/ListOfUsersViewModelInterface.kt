@@ -5,7 +5,7 @@ import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 
 interface ListOfUsersViewModelInterface {
     fun initializeViewModel()
-    fun randomUserCall(numberOfUsers: Int)
-    fun checkIfUserListPrepared(): MutableLiveData<Boolean>
+    fun randomUserApiCall(numberOfUsers: Int)
+    fun getUserListPreparedValue(): MutableLiveData<Boolean>
     fun getRandomUserList(): ArrayList<RandomUser>
 }

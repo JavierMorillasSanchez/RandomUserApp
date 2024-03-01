@@ -56,5 +56,6 @@
     <!-- Error strings -->
     <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
     <string name="go_back">Ir a la pantalla anterior.</string>
+    <string name="toast_not_all_users">No se han obtenido todos los usuarios.</string>
 
 </resources>

@@ -91,12 +91,15 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun getUserList(numberOfUsers: Int, context: Context) {
 
-        this.viewModel.randomUserCall(numberOfUsers)
+        this.viewModel.randomUserApiCall(numberOfUsers)
 
-        viewModel.checkIfUserListPrepared().observe(this, Observer<Boolean> {
+        viewModel.getUserListPreparedValue().observe(this, Observer<Boolean> {
             if(it != null){
                 arrayOfUsers.addAll(this.viewModel.getRandomUserList())
                 prepareUserList(arrayOfUsers)
+                if(it && arrayOfUsers.size != numberOfUsers){
+                    Toast.makeText(this, R.string.toast_not_all_users, Toast.LENGTH_SHORT).show()
+                }
             }
 
         })

@@ -24,7 +24,7 @@ class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
         this.listOfUsers = ArrayList()
     }
 
-    override fun randomUserCall(numberOfUsers: Int) {
+    override fun randomUserApiCall(numberOfUsers: Int) {
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -48,7 +48,7 @@ class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
                             userListPrepared.postValue(true)
                         }
 
-                    } else if(!response.isSuccessful){
+                    } else {
                         Log.e(TAG,"INFO - Error Body -> "+response.body())
                         Log.e(TAG,"INFO - Error Code -> "+response.code())
 
@@ -65,7 +65,7 @@ class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
         return this.listOfUsers
     }
 
-    override fun checkIfUserListPrepared(): MutableLiveData <Boolean> {
+    override fun getUserListPreparedValue(): MutableLiveData <Boolean> {
         return this.userListPrepared
     }
 
