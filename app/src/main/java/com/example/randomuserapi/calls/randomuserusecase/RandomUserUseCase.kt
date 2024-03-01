@@ -11,8 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RandomUserUseCase {
 
-    var logTag = this::class.java.toString()
-
     private var retrofit: Retrofit? = null
 
     private lateinit var randomUserInterface: RandomUserUseCaseInterface
@@ -33,10 +31,6 @@ class RandomUserUseCase {
         randomUserInterface = retrofit?.create(RandomUserUseCaseInterface::class.java)!!
 
         return randomUserInterface
-    }
-
-    suspend fun getRandomUsersFromCall(): RandomUserEntity? {
-       return retrofitBuilderRandomUserInstance()?.getRandomUserDataCall()
     }
 
 }

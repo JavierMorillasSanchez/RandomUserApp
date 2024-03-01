@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -15,21 +16,19 @@ import com.example.randomuserapi.features.listofusers.listadapter.ListOfUserAdap
 import com.example.randomuserapi.features.listofusers.listofusersviewmodel.ListOfUsersViewModel
 import com.example.randomuserapi.utils.FilterFunctions
 import com.example.randomuserapi.utils.IntentExtrasName
-import com.example.randomuserapi.utils.TransformEntity
-import kotlinx.coroutines.*
 
 class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     private lateinit var binding: ActivityListOfUsersBinding
     private lateinit var viewModel: ListOfUsersViewModel
 
-    lateinit var listOfUsersAdapter: ListOfUserAdapter
-    lateinit var recyclerView: RecyclerView
-    lateinit var layoutManager: LayoutManager
+    private lateinit var listOfUsersAdapter: ListOfUserAdapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var layoutManager: LayoutManager
 
-    lateinit var arrayOfUsers: ArrayList<RandomUser>
-    lateinit var filteredArray: ArrayList<RandomUser>
-    var numberOfUsersToShow: Int? = 0
+    private lateinit var arrayOfUsers: ArrayList<RandomUser>
+    private lateinit var filteredArray: ArrayList<RandomUser>
+    private var numberOfUsersToShow: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +42,9 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         finish()
     }
 
-    fun initializeUI(){
+    override fun initializeUI(){
 
-        this.numberOfUsersToShow = intent.extras?.getInt(IntentExtrasName.numberOfUsers)
+        this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.numberOfUsers)
 
         this.viewModel = ListOfUsersViewModel()
         this.viewModel.initializeViewModel()
@@ -73,7 +72,6 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     override fun prepareUserList(userArrayList: ArrayList<RandomUser>) {
 
         this.listOfUsersAdapter = ListOfUserAdapter(userArrayList)
-
         this.layoutManager = LinearLayoutManager(applicationContext)
 
         this.recyclerView = this.binding.rvRandomUserList
@@ -81,6 +79,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         this.recyclerView.adapter = listOfUsersAdapter
 
         endLottieAndShowUserList()
+
     }
 
     override fun endLottieAndShowUserList(){
@@ -94,27 +93,18 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun getUserList(numberOfUsers: Int, context: Context) {
 
-        val fetchRandomUserData = Job()
+        this.viewModel.randomUserApiCall(numberOfUsers)
 
-        val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
-            println("Error ---> ${throwable.message}")
-            showErrorWhileLoadingUsers()
-        }
-
-        val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)
-
-        scope.launch(errorHandler){
-            var randomUser = viewModel.randomUserUseCase.getRandomUsersFromCall()
-            if(randomUser != null){
-                arrayOfUsers.add(TransformEntity.fromEntityToUser(randomUser))
-                if(arrayOfUsers.size < numberOfUsers){
-                    getUserList(numberOfUsers,context)
-                } else {
-                    prepareUserList(arrayOfUsers)
+        viewModel.getUserListPreparedValue().observe(this, Observer<Boolean> {
+            if(it != null){
+                arrayOfUsers.addAll(this.viewModel.getRandomUserList())
+                prepareUserList(arrayOfUsers)
+                if(it && arrayOfUsers.size != numberOfUsers){
+                    Toast.makeText(this, R.string.toast_not_all_users, Toast.LENGTH_SHORT).show()
                 }
             }
-        }
 
+        })
     }
 
     override fun showErrorWhileLoadingUsers(){
