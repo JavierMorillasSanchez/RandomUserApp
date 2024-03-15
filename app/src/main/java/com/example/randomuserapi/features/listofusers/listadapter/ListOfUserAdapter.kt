@@ -14,6 +14,7 @@ import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.features.userdetail.UserDetailFragment
 import com.example.randomuserapi.utils.IntentExtrasName
+import com.example.randomuserapi.utils.render
 
 class ListOfUserAdapter (
     private val randomUserList: ArrayList<RandomUser>
@@ -37,7 +38,7 @@ class ListOfUserAdapter (
         holder.cellUserName.text = randomUserList[position].getRandomUserFullName()
         holder.cellUserPhone.text = randomUserList[position].phone
         holder.cellUserMail.text = randomUserList[position].email
-        loadImages(randomUserList[position].pictureThumbnail, holder.cellImg, holder.itemView.context)
+        holder.cellImg.render(randomUserList[position].pictureThumbnail, holder.itemView.context)
 
         holder.itemView.setOnClickListener {
             val activity = it.context as AppCompatActivity
@@ -50,13 +51,6 @@ class ListOfUserAdapter (
                 .commit()
         }
 
-    }
-
-    fun loadImages(url: String?, userImg: ImageView, context: Context) {
-        Glide.with(context)
-            .load(url)
-            .error(R.drawable.default_user)
-            .into(userImg)
     }
 
 }

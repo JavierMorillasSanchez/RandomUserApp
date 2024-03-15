@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.databinding.FragmentUserDetailBinding
+import com.example.randomuserapi.utils.render
 
 class UserDetailFragment(
     private val randomUserInfo: RandomUser
@@ -36,7 +37,12 @@ class UserDetailFragment(
 
     override fun setUserInfo (){
 
-        context?.let { loadImage(randomUserInfo.pictureLarge, this.binding.imgUserImageDetail, it.applicationContext) }
+        context?.let {
+            this.binding.imgUserImageDetail.render(
+                randomUserInfo.pictureLarge,
+                it
+            )
+        }
 
         this.binding.txtNameDetail.text = randomUserInfo.getRandomUserFullName()
         this.binding.txtPhoneDetail.text = randomUserInfo.phone
