@@ -28,12 +28,12 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
 
     override fun getNumberOfUsers(): Int {
 
-        var numberOfUsersInput = this.binding.etxtIntroduceNumberOfUsers.text.toString()
+        val numberOfUsersInput = this.binding.etxtIntroduceNumberOfUsers.text.toString()
 
-        try {
-            return Integer.parseInt(numberOfUsersInput)
+        return try {
+            Integer.parseInt(numberOfUsersInput)
         } catch (e:Exception){
-            return 0
+            0
         }
     }
 
