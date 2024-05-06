@@ -2,7 +2,5 @@ package com.example.randomuserapi.features.selecnumberofusers.selectnumberofuser
 
 interface SelectNumberOfUsersActivityInterface {
     fun initializeUI()
-    fun checkNumberOfUsers(numberOfUsers: Int)
     fun getNumberOfUsers(): Int
-    fun checkNetworkStateToShowUsers()
 }
