@@ -15,3 +15,7 @@ Used libraries:
 - kotlin-coroutines
 
 Lastest branch: RC-1.1.8
+
+Next steps: 
+- creating unit test
+- update code to follow kotlin standars
