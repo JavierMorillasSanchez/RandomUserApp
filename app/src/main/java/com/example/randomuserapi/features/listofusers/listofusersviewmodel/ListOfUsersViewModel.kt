@@ -30,9 +30,9 @@ class ListOfUsersViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            val result = randomUserUseCase()
-
             for(position in 0 until numberOfUsers) {
+
+                val result = randomUserUseCase()
 
                 if (result != null) {
 
