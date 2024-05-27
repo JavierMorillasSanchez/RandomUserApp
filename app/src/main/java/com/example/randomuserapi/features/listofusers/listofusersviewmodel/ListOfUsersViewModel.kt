@@ -44,7 +44,6 @@ class ListOfUsersViewModel @Inject constructor(
                         if (position + 1 == numberOfUsers) {
                             userListPrepared.postValue(true)
                         }
-
                     }
                 }
             }

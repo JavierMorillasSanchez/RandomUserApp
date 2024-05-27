@@ -1,9 +1,10 @@
 package com.example.randomuserapi.calls.data
 
 import com.example.randomuserapi.calls.data.entities.RandomUserEntity
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RandomUserProvider {
-    companion object{
-        var randomUser: List<RandomUserEntity> = emptyList()
-    }
+@Singleton
+class RandomUserProvider @Inject constructor(){
+    var randomUser: List<RandomUserEntity> = emptyList()
 }
