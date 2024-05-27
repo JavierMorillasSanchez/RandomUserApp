@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,11 +17,13 @@ import com.example.randomuserapi.features.listofusers.listadapter.ListOfUserAdap
 import com.example.randomuserapi.features.listofusers.listofusersviewmodel.ListOfUsersViewModel
 import com.example.randomuserapi.utils.FilterFunctions
 import com.example.randomuserapi.utils.IntentExtrasName
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     private lateinit var binding: ActivityListOfUsersBinding
-    private lateinit var viewModel: ListOfUsersViewModel
+    private val viewModel: ListOfUsersViewModel by viewModels()
 
     private lateinit var listOfUsersAdapter: ListOfUserAdapter
     private lateinit var recyclerView: RecyclerView
@@ -46,7 +49,6 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
         this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.numberOfUsers)
 
-        this.viewModel = ListOfUsersViewModel()
         this.viewModel.initializeViewModel()
         numberOfUsersToShow?.let { this.getUserList(it,applicationContext) }
         this.arrayOfUsers = ArrayList()

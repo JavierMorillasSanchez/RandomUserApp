@@ -7,19 +7,22 @@ import androidx.lifecycle.viewModelScope
 import com.example.randomuserapi.calls.randomuserusecase.RandomUserUseCase
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.utils.TransformEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ListOfUsersViewModel: ViewModel(), ListOfUsersViewModelInterface {
+@HiltViewModel
+class ListOfUsersViewModel @Inject constructor(
+    private val randomUserUseCase: RandomUserUseCase
+): ViewModel(), ListOfUsersViewModelInterface {
 
     private var TAG = this.javaClass.name
-    private lateinit var randomUserUseCase: RandomUserUseCase
     private var userRecievedFromApiCall: RandomUser? = null
     private var userListPrepared: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     private lateinit var listOfUsers: ArrayList<RandomUser>
 
     override fun initializeViewModel(){
-        this.randomUserUseCase = RandomUserUseCase()
         this.userListPrepared.value = false
         this.listOfUsers = ArrayList()
     }

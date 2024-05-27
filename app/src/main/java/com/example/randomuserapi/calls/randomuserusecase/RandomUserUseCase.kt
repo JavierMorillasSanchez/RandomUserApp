@@ -8,8 +8,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class RandomUserUseCase {
+class RandomUserUseCase @Inject constructor() {
 
     private var retrofit: Retrofit? = null
 
