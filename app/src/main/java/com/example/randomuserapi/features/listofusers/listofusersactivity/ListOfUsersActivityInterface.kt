@@ -1,7 +1,7 @@
 package com.example.randomuserapi.features.listofusers.listofusersactivity
 
 import android.content.Context
-import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
+import com.example.randomuserapi.calls.data.RandomUser
 
 interface ListOfUsersActivityInterface {
     fun initializeUI()

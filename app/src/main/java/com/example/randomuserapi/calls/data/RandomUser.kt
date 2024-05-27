@@ -1,4 +1,4 @@
-package com.example.randomuserapi.calls.usecaseclasses.randomuserclass
+package com.example.randomuserapi.calls.data
 
 data class RandomUser(
     val title: String?,

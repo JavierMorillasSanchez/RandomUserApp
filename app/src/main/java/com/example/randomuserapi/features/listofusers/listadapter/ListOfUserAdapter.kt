@@ -1,19 +1,12 @@
 package com.example.randomuserapi.features.listofusers.listadapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.randomuserapi.R
-import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
+import com.example.randomuserapi.calls.data.RandomUser
 import com.example.randomuserapi.features.userdetail.UserDetailFragment
-import com.example.randomuserapi.utils.IntentExtrasName
 import com.example.randomuserapi.utils.render
 
 class ListOfUserAdapter (

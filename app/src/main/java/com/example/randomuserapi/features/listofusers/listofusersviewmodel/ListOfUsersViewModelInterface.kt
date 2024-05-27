@@ -1,7 +1,7 @@
 package com.example.randomuserapi.features.listofusers.listofusersviewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
+import com.example.randomuserapi.calls.data.RandomUser
 
 interface ListOfUsersViewModelInterface {
     fun initializeViewModel()

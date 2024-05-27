@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
-import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
+import com.example.randomuserapi.calls.data.RandomUser
 import com.example.randomuserapi.calls.data.entities.RandomUserEntity
 
 object ApiUrl{
@@ -65,7 +65,7 @@ object NetworkState{
 
 object FilterFunctions{
 
-    fun userIsMale(user:RandomUser): Boolean {
+    fun userIsMale(user: RandomUser): Boolean {
         return user.gender.equals("male")
     }
 

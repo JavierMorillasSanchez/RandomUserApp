@@ -1,6 +1,5 @@
 package com.example.randomuserapi.calls.data.network
 
-import com.example.randomuserapi.calls.RetrofitHelper
 import com.example.randomuserapi.calls.data.entities.RandomUserEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

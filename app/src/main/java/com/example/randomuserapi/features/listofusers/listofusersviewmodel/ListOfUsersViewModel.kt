@@ -1,11 +1,10 @@
 package com.example.randomuserapi.features.listofusers.listofusersviewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
-import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
+import com.example.randomuserapi.calls.data.RandomUser
 import com.example.randomuserapi.utils.TransformEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
