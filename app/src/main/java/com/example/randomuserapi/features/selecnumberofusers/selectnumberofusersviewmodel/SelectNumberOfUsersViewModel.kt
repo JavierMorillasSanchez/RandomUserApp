@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.example.randomuserapi.R
-import com.example.randomuserapi.calls.randomuserusecase.RandomUserUseCase
 import com.example.randomuserapi.features.listofusers.listofusersactivity.ListOfUsersActivity
 import com.example.randomuserapi.utils.InfoDialog
 import com.example.randomuserapi.utils.IntentExtrasName
@@ -13,12 +12,7 @@ import com.example.randomuserapi.utils.NetworkState
 class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
 
     private var logTag = this::class.java.toString()
-    private lateinit var randomUserUseCase: RandomUserUseCase
     private var numberOfUsers = 0
-
-    fun initializeViewModel(){
-        randomUserUseCase = RandomUserUseCase()
-    }
 
     override fun navigateToListOfUsers(context: Context, numberOfUsers: Int) {
         val intent = Intent(context, ListOfUsersActivity::class.java)

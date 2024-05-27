@@ -16,7 +16,6 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
         this.binding = ActivitySelectNumberOfUsersBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
         this.viewmodel = SelectNumberOfUsersViewModel()
-        this.viewmodel.initializeViewModel()
         initializeUI()
     }
 

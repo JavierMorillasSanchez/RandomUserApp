@@ -1,14 +1,11 @@
 package com.example.randomuserapi.utils
 
-import android.app.Dialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
-import com.example.randomuserapi.R
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
-import com.example.randomuserapi.calls.usecaseclasses.randomuserentities.RandomUserEntity
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.example.randomuserapi.calls.data.entities.RandomUserEntity
 
 object ApiUrl{
     const val randomUserApiUrl = "https://randomuser.me/api/"

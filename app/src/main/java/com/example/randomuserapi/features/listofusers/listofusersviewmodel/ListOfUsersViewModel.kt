@@ -4,17 +4,16 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.randomuserapi.calls.randomuserusecase.RandomUserUseCase
+import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
 import com.example.randomuserapi.calls.usecaseclasses.randomuserclass.RandomUser
 import com.example.randomuserapi.utils.TransformEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ListOfUsersViewModel @Inject constructor(
-    private val randomUserUseCase: RandomUserUseCase
+    private val randomUserUseCase: GetRandomUserUseCase
 ): ViewModel(), ListOfUsersViewModelInterface {
 
     private var TAG = this.javaClass.name
@@ -29,39 +28,26 @@ class ListOfUsersViewModel @Inject constructor(
 
     override fun randomUserApiCall(numberOfUsers: Int) {
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
 
-            val retrofitInstance = randomUserUseCase.retrofitBuilderRandomUserInstance()
+            val result = randomUserUseCase()
 
             for(position in 0 until numberOfUsers) {
 
-                val response = retrofitInstance?.getRandomUserDataCall()
+                if (result != null) {
 
-                if (response != null) {
-                    if(response.isSuccessful){
-
-                        Log.d(TAG,"INFO - Success Body -> "+response.body())
-                        Log.d(TAG,"INFO - Success Code -> "+response.code())
-
-                        userRecievedFromApiCall = response.body()?.let { TransformEntity.fromEntityToUser(it) }
+                        userRecievedFromApiCall =
+                            result.let { TransformEntity.fromEntityToUser(it) }
 
                         userRecievedFromApiCall?.let { listOfUsers.add(it) }
 
-                        if(position+1 == numberOfUsers){
+                        if (position + 1 == numberOfUsers) {
                             userListPrepared.postValue(true)
                         }
 
-                    } else {
-                        Log.e(TAG,"INFO - Error Body -> "+response.body())
-                        Log.e(TAG,"INFO - Error Code -> "+response.code())
-
                     }
                 }
-
             }
-
-        }
-
     }
 
     override fun getRandomUserList(): ArrayList<RandomUser> {

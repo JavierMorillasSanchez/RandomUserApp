@@ -1,4 +1,4 @@
-package com.example.randomuserapi.calls.usecaseclasses.randomuserentities
+package com.example.randomuserapi.calls.data.entities
 
 import com.google.gson.annotations.SerializedName
 
