@@ -7,4 +7,5 @@ interface SelectNumberOfUsersViewModelInterface {
     fun checkNetworkStateToShowUsers(context: Context, numberOfUsers: Int)
     fun checkNumberOfUsers(context: Context, numberOfUsers: Int)
     fun setNumberOfUsers(numberOfUsers: Int)
+    fun checkUsersFromDatabase()
 }

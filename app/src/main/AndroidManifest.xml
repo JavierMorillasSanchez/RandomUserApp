@@ -19,7 +19,7 @@
         tools:targetApi="31">
         <activity
             android:name=".features.listofusers.listofusersactivity.ListOfUsersActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".features.selecnumberofusers.selectnumberofusersactivity.SelectNumberOfUsersActivity"
             android:exported="true">

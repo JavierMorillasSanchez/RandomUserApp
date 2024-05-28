@@ -23,6 +23,10 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
         this.binding.btnShowUsersFromApi.setOnClickListener {
             this.viewmodel.checkNetworkStateToShowUsers(this, getNumberOfUsers())
         }
+
+        this.binding.btnShowUsersFromDatabase.setOnClickListener {
+            this.viewmodel.checkUsersFromDatabase()
+        }
     }
 
     override fun getNumberOfUsers(): Int {

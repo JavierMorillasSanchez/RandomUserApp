@@ -2,6 +2,7 @@ package com.example.randomuserapi.features.selecnumberofusers.selectnumberofuser
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.example.randomuserapi.R
 import com.example.randomuserapi.features.listofusers.listofusersactivity.ListOfUsersActivity
@@ -30,6 +31,10 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
         } else {
             InfoDialog.createDialog().customDialog(context)
         }
+    }
+
+    override fun checkUsersFromDatabase() {
+        Log.d(logTag,"La cantidad de usuarios en la base de datos es -> ninguno porque no hay base de datos")
     }
 
     override fun checkNumberOfUsers(context: Context, numberOfUsers: Int) = when {
