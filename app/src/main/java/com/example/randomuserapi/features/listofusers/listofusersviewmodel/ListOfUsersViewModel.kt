@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
 import com.example.randomuserapi.calls.domain.model.RandomUser
-import com.example.randomuserapi.utils.TransformObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,7 +27,7 @@ class ListOfUsersViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            randomUserUseCase.clearRandomUserListFromDatabase()
+            clearDatabase()
 
             for(position in 0 until numberOfUsers) {
 
@@ -54,6 +53,10 @@ class ListOfUsersViewModel @Inject constructor(
 
     override fun getUserListPreparedValue(): MutableLiveData <Boolean> {
         return this.userListPrepared
+    }
+
+    override fun clearDatabase(){
+        viewModelScope.launch { randomUserUseCase.clearRandomUserListFromDatabase() }
     }
 
 }

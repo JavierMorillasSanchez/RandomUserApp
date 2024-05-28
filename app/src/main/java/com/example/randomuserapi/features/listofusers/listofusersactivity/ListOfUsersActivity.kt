@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -135,7 +136,13 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     }
 
     override fun onBackPressed() {
+        this.viewModel.clearDatabase()
         finish()
+    }
+
+    override fun onDestroy() {
+        this.viewModel.clearDatabase()
+        super.onDestroy()
     }
 
 }

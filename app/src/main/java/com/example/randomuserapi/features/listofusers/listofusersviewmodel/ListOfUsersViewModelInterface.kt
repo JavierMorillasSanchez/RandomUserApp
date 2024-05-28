@@ -8,4 +8,5 @@ interface ListOfUsersViewModelInterface {
     fun randomUserApiCall(numberOfUsers: Int)
     fun getUserListPreparedValue(): MutableLiveData<Boolean>
     fun getRandomUserList(): ArrayList<RandomUser>
+    fun clearDatabase()
 }
