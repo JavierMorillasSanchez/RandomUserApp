@@ -1,22 +1,22 @@
-package com.example.randomuserapi.calls.data.entities
+package com.example.randomuserapi.calls.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class RandomUserResultsEntity(
+data class RandomUserResultsModel(
     @SerializedName("gender")
     val gender: String?,
     @SerializedName("name")
-    val name: RandomUserNameEntity?,
+    val name: RandomUserNameModel?,
     @SerializedName("email")
     val email: String?,
     @SerializedName("phone")
     val phone: String?,
     @SerializedName("picture")
-    val picture: RandomUserPictureEntity?,
+    val picture: RandomUserPictureModel?,
     @SerializedName("nat")
     val nationality: String?,
     @SerializedName("location")
-    val location: LocationEntity?,
+    val location: LocationModel?,
     @SerializedName("dob")
-    val dob: DobEntity?
+    val dob: DobModel?
 )

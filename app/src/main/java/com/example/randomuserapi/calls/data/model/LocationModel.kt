@@ -1,10 +1,10 @@
-package com.example.randomuserapi.calls.data.entities
+package com.example.randomuserapi.calls.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class LocationEntity (
+data class LocationModel (
     @SerializedName("street")
-    val street: StreetEntity?,
+    val street: StreetModel?,
     @SerializedName("city")
     val city: String?,
     @SerializedName("country")

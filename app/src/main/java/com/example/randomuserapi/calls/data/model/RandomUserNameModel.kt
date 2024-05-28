@@ -1,8 +1,8 @@
-package com.example.randomuserapi.calls.data.entities
+package com.example.randomuserapi.calls.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class RandomUserNameEntity(
+data class RandomUserNameModel(
     @SerializedName("title")
     val title: String? = null,
     @SerializedName("first")

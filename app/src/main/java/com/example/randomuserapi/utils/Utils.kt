@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import com.example.randomuserapi.calls.data.RandomUser
-import com.example.randomuserapi.calls.data.entities.RandomUserEntity
+import com.example.randomuserapi.calls.data.model.RandomUserModel
 
 object ApiUrl{
     const val randomUserApiUrl = "https://randomuser.me/api/"
@@ -17,22 +17,22 @@ object IntentExtrasName{
 
 object TransformEntity{
 
-    fun fromEntityToUser(userEntity: RandomUserEntity): RandomUser {
+    fun fromEntityToUser(userEntity: RandomUserModel): RandomUser {
         return RandomUser(
-            userEntity.randomUserResultsEntity?.get(0)?.name?.title,
-            userEntity.randomUserResultsEntity?.get(0)?.name?.firstName,
-            userEntity.randomUserResultsEntity?.get(0)?.name?.lastName,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.large,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.medium,
-            userEntity.randomUserResultsEntity?.get(0)?.picture?.thumbnail,
-            userEntity.randomUserResultsEntity?.get(0)?.gender,
-            userEntity.randomUserResultsEntity?.get(0)?.email,
-            userEntity.randomUserResultsEntity?.get(0)?.phone,
-            userEntity.randomUserResultsEntity?.get(0)?.nationality,
-            userEntity.randomUserResultsEntity?.get(0)?.location?.street?.name,
-            userEntity.randomUserResultsEntity?.get(0)?.location?.street?.number,
-            userEntity.randomUserResultsEntity?.get(0)?.dob?.getBirthdateFormatted(),
-            userEntity.randomUserResultsEntity?.get(0)?.dob?.age,
+            userEntity.randomUserResultsModel?.get(0)?.name?.title,
+            userEntity.randomUserResultsModel?.get(0)?.name?.firstName,
+            userEntity.randomUserResultsModel?.get(0)?.name?.lastName,
+            userEntity.randomUserResultsModel?.get(0)?.picture?.large,
+            userEntity.randomUserResultsModel?.get(0)?.picture?.medium,
+            userEntity.randomUserResultsModel?.get(0)?.picture?.thumbnail,
+            userEntity.randomUserResultsModel?.get(0)?.gender,
+            userEntity.randomUserResultsModel?.get(0)?.email,
+            userEntity.randomUserResultsModel?.get(0)?.phone,
+            userEntity.randomUserResultsModel?.get(0)?.nationality,
+            userEntity.randomUserResultsModel?.get(0)?.location?.street?.name,
+            userEntity.randomUserResultsModel?.get(0)?.location?.street?.number,
+            userEntity.randomUserResultsModel?.get(0)?.dob?.getBirthdateFormatted(),
+            userEntity.randomUserResultsModel?.get(0)?.dob?.age,
         )
     }
 

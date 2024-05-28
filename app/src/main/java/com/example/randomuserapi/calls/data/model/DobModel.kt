@@ -1,8 +1,8 @@
-package com.example.randomuserapi.calls.data.entities
+package com.example.randomuserapi.calls.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DobEntity(
+data class DobModel(
     @SerializedName("date")
     val birthdate: String?,
     @SerializedName("age")
