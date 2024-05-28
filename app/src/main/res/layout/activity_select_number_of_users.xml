@@ -17,7 +17,7 @@
         android:layout_marginBottom="25dp"
         app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalMiddle" />
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTopScreen" />
 
     <EditText
         android:id="@+id/etxt_introduce_number_of_users"
@@ -32,21 +32,38 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight" />
 
     <Button
-        android:id="@+id/btn_show_users"
+        android:id="@+id/btn_show_users_from_api"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_show_users"
+        android:text="@string/btn_show_users_from_api"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
         app:layout_constraintTop_toBottomOf="@+id/etxt_introduce_number_of_users" />
 
+    <Button
+        android:id="@+id/btn_show_users_from_database"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_show_users_from_database"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/btn_show_users_from_api" />
+
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontalMiddle"
+        android:id="@+id/guidelineHorizontalTopScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalBottom"

@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- App name -->
     <string name="app_name" translatable="false">Random User Api</string>
 
@@ -7,6 +7,7 @@
     <string name="title_select_number_of_users">Introduce la cantidad de usuarios que quieres visualizar.</string>
     <string name="hint_enter_number">Introduce un número.</string>
     <string name="btn_show_users_from_api">Mostrar nuevos usuarios</string>
+    <string name="btn_show_users_from_database">Mostrar usuarios guardados</string>
     <string name="toast_introduce_number_of_users_to_show">Introduce el número de usuarios que quieres visualizar.</string>
     <string name="toast_too_many_users">Introduce hasta un máximo de 50 usuarios.</string>
 
@@ -57,6 +58,5 @@
     <string name="error_in_user_list">Ha ocurrido un error y no se puede mostrar la lista de usuarios.</string>
     <string name="go_back">Ir a la pantalla anterior.</string>
     <string name="toast_not_all_users">No se han obtenido todos los usuarios.</string>
-    <string name="btn_show_users_from_database">Mostrar usuarios guardados.</string>
 
 </resources>

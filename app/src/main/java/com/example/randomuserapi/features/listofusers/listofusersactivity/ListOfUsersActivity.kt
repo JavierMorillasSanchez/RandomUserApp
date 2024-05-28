@@ -41,10 +41,6 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         initializeUI()
     }
 
-    override fun onBackPressed() {
-        finish()
-    }
-
     override fun initializeUI(){
 
         this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.numberOfUsers)
@@ -136,6 +132,10 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         }
         Toast.makeText(applicationContext, R.string.toast_showing_female_users, Toast.LENGTH_SHORT).show()
         prepareUserList(filteredArray)
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 
 }

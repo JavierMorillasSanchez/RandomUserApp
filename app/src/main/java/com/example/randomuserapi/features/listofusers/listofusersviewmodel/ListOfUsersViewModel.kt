@@ -15,7 +15,6 @@ class ListOfUsersViewModel @Inject constructor(
     private val randomUserUseCase: GetRandomUserUseCase
 ): ViewModel(), ListOfUsersViewModelInterface {
 
-    private var TAG = this.javaClass.name
     private var userRecievedFromApiCall: RandomUser? = null
     private var userListPrepared: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     private lateinit var listOfUsers: ArrayList<RandomUser>

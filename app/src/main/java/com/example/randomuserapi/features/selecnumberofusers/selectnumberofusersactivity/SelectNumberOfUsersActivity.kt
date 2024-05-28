@@ -20,7 +20,7 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
     }
 
     override fun initializeUI() {
-        this.binding.btnShowUsers.setOnClickListener {
+        this.binding.btnShowUsersFromApi.setOnClickListener {
             this.viewmodel.checkNetworkStateToShowUsers(this, getNumberOfUsers())
         }
     }
