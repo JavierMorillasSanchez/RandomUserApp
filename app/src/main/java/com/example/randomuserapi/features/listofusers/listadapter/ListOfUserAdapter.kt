@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randomuserapi.R
-import com.example.randomuserapi.calls.data.RandomUser
+import com.example.randomuserapi.calls.domain.model.RandomUser
 import com.example.randomuserapi.features.userdetail.UserDetailFragment
 import com.example.randomuserapi.utils.render
 

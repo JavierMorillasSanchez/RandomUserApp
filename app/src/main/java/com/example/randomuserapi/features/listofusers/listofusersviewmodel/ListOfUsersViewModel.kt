@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
-import com.example.randomuserapi.calls.data.RandomUser
-import com.example.randomuserapi.utils.TransformEntity
+import com.example.randomuserapi.calls.domain.model.RandomUser
+import com.example.randomuserapi.utils.TransformObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,8 +34,7 @@ class ListOfUsersViewModel @Inject constructor(
 
                 if (result != null) {
 
-                        userRecievedFromApiCall =
-                            result.let { TransformEntity.fromEntityToUser(it) }
+                        userRecievedFromApiCall = result
 
                         userRecievedFromApiCall?.let { listOfUsers.add(it) }
 

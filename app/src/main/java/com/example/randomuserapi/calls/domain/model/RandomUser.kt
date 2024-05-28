@@ -1,4 +1,6 @@
-package com.example.randomuserapi.calls.data
+package com.example.randomuserapi.calls.domain.model
+
+import com.example.randomuserapi.calls.data.model.RandomUserModel
 
 data class RandomUser(
     val title: String?,

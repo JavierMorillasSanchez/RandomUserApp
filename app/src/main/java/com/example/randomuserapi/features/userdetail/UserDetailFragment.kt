@@ -9,7 +9,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.randomuserapi.R
-import com.example.randomuserapi.calls.data.RandomUser
+import com.example.randomuserapi.calls.domain.model.RandomUser
 import com.example.randomuserapi.databinding.FragmentUserDetailBinding
 import com.example.randomuserapi.utils.render
 

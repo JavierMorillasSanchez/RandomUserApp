@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.randomuserapi.R
-import com.example.randomuserapi.calls.data.RandomUser
+import com.example.randomuserapi.calls.domain.model.RandomUser
 import com.example.randomuserapi.databinding.ActivityListOfUsersBinding
 import com.example.randomuserapi.features.listofusers.listadapter.ListOfUserAdapter
 import com.example.randomuserapi.features.listofusers.listofusersviewmodel.ListOfUsersViewModel
