@@ -56,6 +56,25 @@ object TransformObject{
         )
     }
 
+    fun fromUserToDatabaseEntity(randomUser: RandomUser): RandomUserEntity {
+        return RandomUserEntity(
+            title = randomUser.title,
+            firstName = randomUser.firstName,
+            lastName = randomUser.lastName,
+            pictureLarge = randomUser.pictureLarge,
+            pictureMedium = randomUser.pictureMedium,
+            pictureThumbnail = randomUser.pictureThumbnail,
+            gender = randomUser.gender,
+            email = randomUser.email,
+            phone = randomUser.phone,
+            nationality = randomUser.nationality,
+            address = randomUser.address,
+            addressNumber = randomUser.addressNumber,
+            birthday = randomUser.birthday,
+            age = randomUser.age
+        )
+    }
+
 }
 
 object NetworkState{

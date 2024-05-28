@@ -1,10 +1,12 @@
 package com.example.randomuserapi.calls.data.database.dao
 
 import androidx.room.Dao
+import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.randomuserapi.calls.data.database.entities.RandomUserEntity
+import com.example.randomuserapi.calls.domain.model.RandomUser
 import com.example.randomuserapi.utils.RoomUtils
 
 @Dao
@@ -14,4 +16,10 @@ interface RandomUserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllRandomUsers(randomUserList: List<RandomUserEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSingleRandomUser(randomUserEntity: RandomUserEntity)
+
+    @Query("DELETE FROM ${RoomUtils.RANDOM_USER_TABLE_NAME}")
+    suspend fun clearDatabase()
 }

@@ -28,9 +28,11 @@ class ListOfUsersViewModel @Inject constructor(
 
         viewModelScope.launch {
 
+            randomUserUseCase.clearRandomUserListFromDatabase()
+
             for(position in 0 until numberOfUsers) {
 
-                val result = randomUserUseCase()
+                val result = randomUserUseCase.getRandomUserFromApi()
 
                 if (result != null) {
 

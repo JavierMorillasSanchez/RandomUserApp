@@ -1,7 +1,7 @@
 package com.example.randomuserapi.calls.data
 
 import com.example.randomuserapi.calls.data.database.dao.RandomUserDao
-import com.example.randomuserapi.calls.data.model.RandomUserModel
+import com.example.randomuserapi.calls.data.database.entities.RandomUserEntity
 import com.example.randomuserapi.calls.data.network.RandomUserService
 import com.example.randomuserapi.calls.domain.model.RandomUser
 import com.example.randomuserapi.utils.TransformObject
@@ -13,15 +13,30 @@ class RandomUserRepository @Inject constructor(
 ){
 
     suspend fun getRandomUserFromApi(): RandomUser? {
-        val response: RandomUserModel? = api.getRandomUser()
+        val response = api.getRandomUser()
         return response?.let { TransformObject.fromModelToUser(it) }
     }
 
-    /*
-    suspend fun getRandomUserFromDatabase(): List<RandomUser> {
 
+    suspend fun getRandomUserFromDatabase(): List<RandomUser> {
+        val response = randomUserDao.getAllUsers()
+
+        var randomUserList = emptyList<RandomUser>()
+
+        for(randomUser in response) {
+            TransformObject.fromEntityToUser(randomUser)
+        }
+
+        return randomUserList
     }
 
-     */
+    suspend fun insertRandomUserOnDatabase(randomUserEntity: RandomUserEntity) {
+        randomUserDao.insertSingleRandomUser(randomUserEntity)
+    }
+
+    suspend fun clearDatabase(){
+        randomUserDao.clearDatabase()
+    }
+
 
 }
