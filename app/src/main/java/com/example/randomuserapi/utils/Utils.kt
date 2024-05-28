@@ -70,3 +70,7 @@ object FilterFunctions{
     }
 
 }
+
+object RoomUtils{
+    const val RANDOM_USER_TABLE_NAME = "random_user_table"
+}
