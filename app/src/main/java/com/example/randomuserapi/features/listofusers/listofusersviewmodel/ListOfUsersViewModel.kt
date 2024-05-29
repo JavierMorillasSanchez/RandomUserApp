@@ -55,8 +55,7 @@ class ListOfUsersViewModel @Inject constructor(
     override fun getRandomUserListFromDatabase(){
         viewModelScope.launch {
             listOfUsers = randomUserUseCase.getRandomUserFromDatabase()
-
-            userListPrepared.postValue(listOfUsers.isEmpty())
+            userListPrepared.postValue(listOfUsers.isNotEmpty())
 
             Log.d(logTag, "Cantidad de Usuarios cargados de la base de datos: ${listOfUsers.size}")
         }

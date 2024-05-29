@@ -2,6 +2,7 @@ package com.example.randomuserapi.features.listofusers.listofusersactivity
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -101,13 +102,17 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
         viewModel.getUserListPreparedValue().observe(this, Observer<Boolean> {
             if(it != null){
+
                 arrayOfUsers.addAll(this.viewModel.getRandomUserList())
-                prepareUserList(arrayOfUsers)
-                if(it &&
-                    !intent.extras!!.containsKey(IntentExtrasName.GET_USERS_FROM_DATABASE) &&
-                    arrayOfUsers.size != numberOfUsersToShow){
-                    Toast.makeText(this, R.string.toast_not_all_users, Toast.LENGTH_SHORT).show()
+
+                if(!it
+                    && arrayOfUsers.isEmpty()
+                    && getUsersFromDatabase) {
+                    showNoUsersInDatabase()
                 }
+
+                prepareUserList(arrayOfUsers)
+
             }
 
         })
@@ -115,14 +120,14 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun showErrorWhileLoadingUsers(){
         this.binding.llError.visibility = View.VISIBLE
-        this.binding.rvRandomUserList.visibility = View.GONE
+        this.binding.llUserList.visibility = View.GONE
         this.binding.llLoadingUserList.visibility = View.GONE
         this.binding.btnErrorGoBack.setOnClickListener { finish() }
     }
 
     override fun showNoUsersInDatabase(){
         this.binding.llNoUsersInDatabase.visibility = View.VISIBLE
-        this.binding.rvRandomUserList.visibility = View.GONE
+        this.binding.llUserList.visibility = View.GONE
         this.binding.llLoadingUserList.visibility = View.GONE
         this.binding.btnNoUsersInDatabaseGoBack.setOnClickListener { finish() }
     }
