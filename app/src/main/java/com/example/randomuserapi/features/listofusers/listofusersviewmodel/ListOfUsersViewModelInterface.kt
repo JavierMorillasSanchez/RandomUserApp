@@ -5,7 +5,8 @@ import com.example.randomuserapi.calls.domain.model.RandomUser
 
 interface ListOfUsersViewModelInterface {
     fun initializeViewModel()
-    fun randomUserApiCall(numberOfUsers: Int)
+    fun getRandomUserListFromApiCall(numberOfUsers: Int)
+    fun getRandomUserListFromDatabase()
     fun getUserListPreparedValue(): MutableLiveData<Boolean>
     fun getRandomUserList(): ArrayList<RandomUser>
     fun clearDatabase()

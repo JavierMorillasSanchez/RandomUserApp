@@ -18,13 +18,14 @@ class RandomUserRepository @Inject constructor(
     }
 
 
-    suspend fun getRandomUserFromDatabase(): List<RandomUser> {
+    suspend fun getRandomUserFromDatabase(): ArrayList<RandomUser> {
+
         val response = randomUserDao.getAllUsers()
 
-        var randomUserList = emptyList<RandomUser>()
+        val randomUserList = ArrayList<RandomUser>()
 
         for(randomUser in response) {
-            TransformObject.fromEntityToUser(randomUser)
+            randomUserList.add(TransformObject.fromEntityToUser(randomUser))
         }
 
         return randomUserList

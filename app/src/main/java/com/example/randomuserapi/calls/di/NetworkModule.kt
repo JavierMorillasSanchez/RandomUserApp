@@ -1,7 +1,7 @@
 package com.example.randomuserapi.calls.di
 
 import com.example.randomuserapi.calls.data.network.RandomUserApiClient
-import com.example.randomuserapi.utils.ApiUrl
+import com.example.randomuserapi.utils.ApiEndpoint
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit{
         return Retrofit.Builder()
-            .baseUrl(ApiUrl.randomUserApiUrl)
+            .baseUrl(ApiEndpoint.RANDOM_USER_API_ENDPOINT)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

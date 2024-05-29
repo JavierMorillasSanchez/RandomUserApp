@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -44,7 +43,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun initializeUI(){
 
-        this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.numberOfUsers)
+        this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.NUMBER_OF_USERS)
 
         this.viewModel.initializeViewModel()
         numberOfUsersToShow?.let { this.getUserList(it,applicationContext) }
@@ -92,7 +91,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun getUserList(numberOfUsers: Int, context: Context) {
 
-        this.viewModel.randomUserApiCall(numberOfUsers)
+        this.viewModel.getRandomUserListFromApiCall(numberOfUsers)
 
         viewModel.getUserListPreparedValue().observe(this, Observer<Boolean> {
             if(it != null){
@@ -136,13 +135,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     }
 
     override fun onBackPressed() {
-        this.viewModel.clearDatabase()
         finish()
-    }
-
-    override fun onDestroy() {
-        this.viewModel.clearDatabase()
-        super.onDestroy()
     }
 
 }

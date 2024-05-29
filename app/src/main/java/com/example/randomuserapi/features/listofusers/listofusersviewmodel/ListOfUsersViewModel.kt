@@ -23,7 +23,7 @@ class ListOfUsersViewModel @Inject constructor(
         this.listOfUsers = ArrayList()
     }
 
-    override fun randomUserApiCall(numberOfUsers: Int) {
+    override fun getRandomUserListFromApiCall(numberOfUsers: Int) {
 
         viewModelScope.launch {
 
@@ -45,6 +45,13 @@ class ListOfUsersViewModel @Inject constructor(
                     }
                 }
             }
+    }
+
+    override fun getRandomUserListFromDatabase(){
+        viewModelScope.launch {
+            listOfUsers = randomUserUseCase.getRandomUserFromDatabase()
+            userListPrepared.postValue(true)
+        }
     }
 
     override fun getRandomUserList(): ArrayList<RandomUser> {

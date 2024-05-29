@@ -27,8 +27,7 @@ class GetRandomUserUseCase @Inject constructor(
         return randomUser
     }
 
-    suspend fun getRandomUserFromDatabase(): List<RandomUser>{
-
+    suspend fun getRandomUserFromDatabase(): ArrayList<RandomUser>{
         return  repository.getRandomUserFromDatabase()
     }
 

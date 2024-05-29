@@ -17,7 +17,7 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
 
     override fun navigateToListOfUsers(context: Context, numberOfUsers: Int) {
         val intent = Intent(context, ListOfUsersActivity::class.java)
-        intent.putExtra(IntentExtrasName.numberOfUsers, numberOfUsers)
+        intent.putExtra(IntentExtrasName.NUMBER_OF_USERS, numberOfUsers)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }

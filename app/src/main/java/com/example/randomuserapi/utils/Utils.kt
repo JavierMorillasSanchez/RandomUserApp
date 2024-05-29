@@ -8,12 +8,13 @@ import com.example.randomuserapi.calls.data.database.entities.RandomUserEntity
 import com.example.randomuserapi.calls.domain.model.RandomUser
 import com.example.randomuserapi.calls.data.model.RandomUserModel
 
-object ApiUrl{
-    const val randomUserApiUrl = "https://randomuser.me/api/"
+object ApiEndpoint{
+    const val RANDOM_USER_API_ENDPOINT = "https://randomuser.me/api/"
 }
 
 object IntentExtrasName{
-    const val numberOfUsers = "numberOfUsers"
+    const val NUMBER_OF_USERS = "numberOfUsers"
+    const val GET_USERS_FROM_DATABASE = "getUsersFromDatabase"
 }
 
 object TransformObject{
