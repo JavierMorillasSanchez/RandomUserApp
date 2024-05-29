@@ -25,7 +25,7 @@ class SelectNumberOfUsersActivity : AppCompatActivity(), SelectNumberOfUsersActi
         }
 
         this.binding.btnShowUsersFromDatabase.setOnClickListener {
-            this.viewmodel.checkUsersFromDatabase()
+            this.viewmodel.navigateToListOfUsersAndGetListFromDatabase(this)
         }
     }
 

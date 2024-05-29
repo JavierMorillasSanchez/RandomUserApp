@@ -15,9 +15,16 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
     private var logTag = this::class.java.toString()
     private var numberOfUsers = 0
 
-    override fun navigateToListOfUsers(context: Context, numberOfUsers: Int) {
+    override fun navigateToListOfUsersAndGetListFromApiCall(context: Context, numberOfUsers: Int) {
         val intent = Intent(context, ListOfUsersActivity::class.java)
         intent.putExtra(IntentExtrasName.NUMBER_OF_USERS, numberOfUsers)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
+    override fun navigateToListOfUsersAndGetListFromDatabase(context: Context) {
+        val intent = Intent(context, ListOfUsersActivity::class.java)
+        intent.putExtra(IntentExtrasName.GET_USERS_FROM_DATABASE, true)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
@@ -33,14 +40,10 @@ class SelectNumberOfUsersViewModel: SelectNumberOfUsersViewModelInterface {
         }
     }
 
-    override fun checkUsersFromDatabase() {
-        Log.d(logTag,"La cantidad de usuarios en la base de datos es -> ninguno porque no hay base de datos")
-    }
-
     override fun checkNumberOfUsers(context: Context, numberOfUsers: Int) = when {
         numberOfUsers == 0 -> Toast.makeText(context, R.string.toast_introduce_number_of_users_to_show, Toast.LENGTH_SHORT).show()
         numberOfUsers >= 51 -> Toast.makeText(context, R.string.toast_too_many_users, Toast.LENGTH_SHORT).show()
-        else -> navigateToListOfUsers(context, numberOfUsers)
+        else -> navigateToListOfUsersAndGetListFromApiCall(context, numberOfUsers)
     }
 
     override fun setNumberOfUsers(numberOfUsers: Int) {

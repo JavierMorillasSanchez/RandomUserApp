@@ -32,6 +32,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
     private lateinit var arrayOfUsers: ArrayList<RandomUser>
     private lateinit var filteredArray: ArrayList<RandomUser>
     private var numberOfUsersToShow: Int = 0
+    private var getUsersFromDatabase: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +44,9 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
     override fun initializeUI(){
 
-        this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.NUMBER_OF_USERS)
-
         this.viewModel.initializeViewModel()
-        numberOfUsersToShow?.let { this.getUserList(it,applicationContext) }
+        this.getUsersFromDatabase = intent.extras.let { it!!.containsKey(IntentExtrasName.GET_USERS_FROM_DATABASE) }
+        this.getUserList(applicationContext)
         this.arrayOfUsers = ArrayList()
 
         this.binding.optionMale.setOnClickListener {
@@ -86,18 +86,26 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
             this.binding.llFilter.visibility = View.VISIBLE
             this.binding.separator.visibility = View.VISIBLE
             this.binding.llLoadingUserList.visibility = View.GONE
+            this.binding.llNoUsersInDatabase.visibility = View.GONE
         }
     }
 
-    override fun getUserList(numberOfUsers: Int, context: Context) {
+    override fun getUserList(context: Context) {
 
-        this.viewModel.getRandomUserListFromApiCall(numberOfUsers)
+        if(getUsersFromDatabase){
+            this.viewModel.getRandomUserListFromDatabase()
+        } else {
+            this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.NUMBER_OF_USERS)
+            this.viewModel.getRandomUserListFromApiCall(numberOfUsersToShow)
+        }
 
         viewModel.getUserListPreparedValue().observe(this, Observer<Boolean> {
             if(it != null){
                 arrayOfUsers.addAll(this.viewModel.getRandomUserList())
                 prepareUserList(arrayOfUsers)
-                if(it && arrayOfUsers.size != numberOfUsers){
+                if(it &&
+                    !intent.extras!!.containsKey(IntentExtrasName.GET_USERS_FROM_DATABASE) &&
+                    arrayOfUsers.size != numberOfUsersToShow){
                     Toast.makeText(this, R.string.toast_not_all_users, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -110,6 +118,13 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
         this.binding.rvRandomUserList.visibility = View.GONE
         this.binding.llLoadingUserList.visibility = View.GONE
         this.binding.btnErrorGoBack.setOnClickListener { finish() }
+    }
+
+    override fun showNoUsersInDatabase(){
+        this.binding.llNoUsersInDatabase.visibility = View.VISIBLE
+        this.binding.rvRandomUserList.visibility = View.GONE
+        this.binding.llLoadingUserList.visibility = View.GONE
+        this.binding.btnNoUsersInDatabaseGoBack.setOnClickListener { finish() }
     }
 
     override fun filterMaleUserList(){

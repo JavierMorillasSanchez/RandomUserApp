@@ -58,5 +58,6 @@
     <string name="go_back">Ir a la pantalla anterior.</string>
     <string name="toast_not_all_users">No se han obtenido todos los usuarios.</string>
     <string name="btn_show_users_from_database">Mostrar usuarios guardados.</string>
+    <string name="no_users_in_database">No hay ningún usuario en la base de datos.</string>
 
 </resources>

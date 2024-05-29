@@ -1,5 +1,6 @@
 package com.example.randomuserapi.features.listofusers.listofusersviewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,13 +9,15 @@ import com.example.randomuserapi.calls.domain.model.RandomUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class ListOfUsersViewModel @Inject constructor(
     private val randomUserUseCase: GetRandomUserUseCase
 ): ViewModel(), ListOfUsersViewModelInterface {
 
-    private var userRecievedFromApiCall: RandomUser? = null
+    private val logTag = this.javaClass.name
+
     private var userListPrepared: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     private lateinit var listOfUsers: ArrayList<RandomUser>
 
@@ -35,12 +38,14 @@ class ListOfUsersViewModel @Inject constructor(
 
                 if (result != null) {
 
-                        userRecievedFromApiCall = result
+                    Log.d(logTag, "Usuario Recibido: ${result.getRandomUserFullName()}")
 
-                        userRecievedFromApiCall?.let { listOfUsers.add(it) }
+                        result?.let { listOfUsers.add(result) }
 
                         if (position + 1 == numberOfUsers) {
                             userListPrepared.postValue(true)
+                            Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
+
                         }
                     }
                 }
@@ -50,7 +55,10 @@ class ListOfUsersViewModel @Inject constructor(
     override fun getRandomUserListFromDatabase(){
         viewModelScope.launch {
             listOfUsers = randomUserUseCase.getRandomUserFromDatabase()
-            userListPrepared.postValue(true)
+
+            userListPrepared.postValue(listOfUsers.isEmpty())
+
+            Log.d(logTag, "Cantidad de Usuarios cargados de la base de datos: ${listOfUsers.size}")
         }
     }
 

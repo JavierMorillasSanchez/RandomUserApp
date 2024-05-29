@@ -1,5 +1,6 @@
 package com.example.randomuserapi.calls.data
 
+import android.util.Log
 import com.example.randomuserapi.calls.data.database.dao.RandomUserDao
 import com.example.randomuserapi.calls.data.database.entities.RandomUserEntity
 import com.example.randomuserapi.calls.data.network.RandomUserService
@@ -11,6 +12,8 @@ class RandomUserRepository @Inject constructor(
     private val api: RandomUserService,
     private val randomUserDao: RandomUserDao
 ){
+
+    private val logTag = this.javaClass.name
 
     suspend fun getRandomUserFromApi(): RandomUser? {
         val response = api.getRandomUser()
@@ -27,6 +30,8 @@ class RandomUserRepository @Inject constructor(
         for(randomUser in response) {
             randomUserList.add(TransformObject.fromEntityToUser(randomUser))
         }
+
+        Log.d(logTag, "Tamaño Lista de Usuarios: ${randomUserList.size}")
 
         return randomUserList
     }

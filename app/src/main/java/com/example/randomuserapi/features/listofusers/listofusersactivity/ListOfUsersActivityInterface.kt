@@ -7,8 +7,9 @@ interface ListOfUsersActivityInterface {
     fun initializeUI()
     fun prepareUserList(userArrayList: ArrayList<RandomUser>)
     fun endLottieAndShowUserList()
-    fun getUserList(numberOfUsers: Int, context: Context)
+    fun getUserList(context: Context)
     fun showErrorWhileLoadingUsers()
+    fun showNoUsersInDatabase()
     fun filterMaleUserList()
     fun filterFemaleUserList()
 
