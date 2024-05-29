@@ -59,5 +59,6 @@
     <string name="error_in_user_list">An error has occurred and the list of users cannot be displayed.</string>
     <string name="go_back">Go to previous screen</string>
     <string name="toast_not_all_users">Not all users have been obtained.</string>
+    <string name="no_users_in_database">There is no users stored.</string>
 
 </resources>
