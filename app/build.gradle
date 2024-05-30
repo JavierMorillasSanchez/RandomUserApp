@@ -41,9 +41,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_9
         targetCompatibility JavaVersion.VERSION_1_9
     }
+    
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
 }
 
 dependencies {
@@ -57,6 +65,7 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-rc01'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
@@ -64,6 +73,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation "io.mockk:mockk:1.12.2"
 
     //Dagger Hilt
     implementation 'com.google.dagger:hilt-android:2.44'
