@@ -116,6 +116,12 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
             }
 
         })
+
+        this.viewModel.checkIfAllUsersHasBeenRecieved().observe(this) {
+            if (!it) {
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun showErrorWhileLoadingUsers(){

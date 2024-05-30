@@ -9,7 +9,6 @@ import com.example.randomuserapi.calls.domain.model.RandomUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class ListOfUsersViewModel @Inject constructor(
@@ -19,10 +18,12 @@ class ListOfUsersViewModel @Inject constructor(
     private val logTag = this.javaClass.name
 
     private var userListPrepared: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+    private var allUsersRecieved: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     private lateinit var listOfUsers: ArrayList<RandomUser>
 
     override fun initializeViewModel(){
         this.userListPrepared.value = false
+        this.allUsersRecieved.value = true
         this.listOfUsers = ArrayList()
     }
 
@@ -47,6 +48,8 @@ class ListOfUsersViewModel @Inject constructor(
                             Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
 
                         }
+                    } else {
+                        checkIfAllUsersHasBeenRecieved()
                     }
                 }
             }
@@ -71,6 +74,10 @@ class ListOfUsersViewModel @Inject constructor(
 
     override fun clearDatabase(){
         viewModelScope.launch { randomUserUseCase.clearRandomUserListFromDatabase() }
+    }
+
+    override fun checkIfAllUsersHasBeenRecieved(): MutableLiveData <Boolean> {
+        return this.allUsersRecieved
     }
 
 }
