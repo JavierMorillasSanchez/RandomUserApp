@@ -36,20 +36,25 @@ class ListOfUsersViewModel @Inject constructor(
 
                 val result = randomUserUseCase.getRandomUserFromApi()
 
-                if (result != null) {
+                    if (result != null) {
 
-                    //Log.d(logTag, "Usuario Recibido: ${result.getRandomUserFullName()}")
+                        Log.d(logTag, "Usuario Recibido: ${result.getRandomUserFullName()}")
 
                         result?.let { listOfUsers.add(result) }
 
-                        if (position + 1 == numberOfUsers) {
-                            userListPrepared.postValue(true)
-                            //Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
-
-                        }
                     } else {
-                        checkIfAllUsersHasBeenRecieved()
+                        allUsersRecieved.value = false
                     }
+
+                    if (position + 1 == numberOfUsers) {
+
+                        userListPrepared.postValue(true)
+
+                        checkIfAllUsersHasBeenRecieved()
+
+                        Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
+                    }
+
                 }
             }
     }

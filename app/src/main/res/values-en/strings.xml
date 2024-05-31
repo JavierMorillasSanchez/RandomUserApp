@@ -60,5 +60,6 @@
     <string name="go_back">Go to previous screen</string>
     <string name="toast_not_all_users">Not all users have been obtained.</string>
     <string name="no_users_in_database">There is no users stored.</string>
+    <string name="toast_showing_not_all_users_recieved">Not all users can be displayed.</string>
 
 </resources>

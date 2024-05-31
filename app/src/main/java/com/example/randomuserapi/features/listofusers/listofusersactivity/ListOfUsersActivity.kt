@@ -119,7 +119,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
         this.viewModel.checkIfAllUsersHasBeenRecieved().observe(this) {
             if (!it) {
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, R.string.toast_showing_not_all_users_recieved, Toast.LENGTH_SHORT).show()
             }
         }
     }
