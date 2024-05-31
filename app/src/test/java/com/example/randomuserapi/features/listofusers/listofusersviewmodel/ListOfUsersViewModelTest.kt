@@ -2,21 +2,19 @@ package com.example.randomuserapi.features.listofusers.listofusersviewmodel
 
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
 import com.example.randomuserapi.calls.domain.model.RandomUser
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Rule
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.AfterEachCallback
@@ -32,7 +30,7 @@ class ListOfUsersViewModelTest{
     @RelaxedMockK
     private lateinit var randomUserUseCase: GetRandomUserUseCase
 
-    private lateinit var viewModel: ListOfUsersViewModel
+    var viewModelMock = mockk<ListOfUsersViewModel>()
 
     class InstantTaskExecutorRuleForJUnit5 : AfterEachCallback, BeforeEachCallback {
         override fun beforeEach(context: ExtensionContext?) {
@@ -59,7 +57,7 @@ class ListOfUsersViewModelTest{
     @BeforeEach
     fun onBefore(){
         MockKAnnotations.init(this)
-        viewModel = ListOfUsersViewModel(randomUserUseCase)
+        viewModelMock = ListOfUsersViewModel(randomUserUseCase)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
@@ -69,22 +67,18 @@ class ListOfUsersViewModelTest{
     }
 
     @Test
-    fun `when the api call results on a null user, call notAllUsersRecieved method`() = runTest {
-
-        val nullRandomUser: RandomUser? = null
-        var list = viewModel.getRandomUserList()
+    fun `when the api call results on a null user, call checkIfAllUsersHasBeenRecieved method`() = runTest {
 
         //Given
-        coEvery { randomUserUseCase.getRandomUserFromApi() } returns nullRandomUser
-
-        //When
         coEvery {
-            viewModel.getRandomUserListFromApiCall(1)
-            list = viewModel.getRandomUserList()
+            randomUserUseCase.getRandomUserFromApi()
+            viewModelMock.addUserRecievedToUserList(null)
         }
 
+        //When
+
         //Then
-        //coVerify { list.size == 0 }
+        assertTrue(viewModelMock.getRandomUserList().isEmpty())
     }
 
 }

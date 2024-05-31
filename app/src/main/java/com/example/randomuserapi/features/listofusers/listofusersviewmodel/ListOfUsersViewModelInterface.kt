@@ -11,4 +11,5 @@ interface ListOfUsersViewModelInterface {
     fun getRandomUserList(): ArrayList<RandomUser>
     fun clearDatabase()
     fun checkIfAllUsersHasBeenRecieved(): MutableLiveData <Boolean>
+    fun addUserRecievedToUserList(randomUser: RandomUser?)
 }

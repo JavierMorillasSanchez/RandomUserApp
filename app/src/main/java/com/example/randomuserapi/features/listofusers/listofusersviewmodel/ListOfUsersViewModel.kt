@@ -34,17 +34,9 @@ class ListOfUsersViewModel @Inject constructor(
 
             for(position in 0 until numberOfUsers) {
 
-                val result = randomUserUseCase.getRandomUserFromApi()
+                var result = randomUserUseCase.getRandomUserFromApi()
 
-                    if (result != null) {
-
-                        Log.d(logTag, "Usuario Recibido: ${result.getRandomUserFullName()}")
-
-                        result?.let { listOfUsers.add(result) }
-
-                    } else {
-                        allUsersRecieved.value = false
-                    }
+                addUserRecievedToUserList(result)
 
                     if (position + 1 == numberOfUsers) {
 
@@ -52,11 +44,22 @@ class ListOfUsersViewModel @Inject constructor(
 
                         checkIfAllUsersHasBeenRecieved()
 
-                        Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
+                        //Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
                     }
 
                 }
             }
+    }
+
+    override fun addUserRecievedToUserList(randomUser: RandomUser?){
+
+        if (randomUser != null) {
+
+            listOfUsers.add(randomUser)
+
+        } else {
+            allUsersRecieved.value = false
+        }
     }
 
     override fun getRandomUserListFromDatabase(){
