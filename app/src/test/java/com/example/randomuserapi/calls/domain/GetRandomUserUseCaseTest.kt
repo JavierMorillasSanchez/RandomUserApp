@@ -6,7 +6,6 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

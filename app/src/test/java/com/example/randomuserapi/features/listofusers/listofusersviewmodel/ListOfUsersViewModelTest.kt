@@ -8,14 +8,13 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Before
 import org.junit.Rule
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 
 @ExperimentalCoroutinesApi
@@ -27,7 +26,7 @@ class ListOfUsersViewModelTest{
     private lateinit var viewModel: ListOfUsersViewModel
 
     @get:Rule
-    var rule: InstantTaskExecutorRule = InstantTaskExecutorRule()
+    var instantExecutorRule = InstantTaskExecutorRule()
 
     @BeforeEach
     fun onBefore(){
@@ -42,21 +41,20 @@ class ListOfUsersViewModelTest{
     }
 
     @Test
-    fun `when the api call results on a null user, call notAllUsersRecieved method`() = runTest {
+    fun `when the api call results on a null user, call notAllUsersRecieved method`() = runBlocking {
 
-        val numberOfTimesApiCalled = 1
         val nullRandomUser: RandomUser? = null
-        val allUsersRecievedValue = viewModel.checkIfAllUsersHasBeenRecieved().value
 
         //Given
         coEvery { randomUserUseCase.getRandomUserFromApi() } returns nullRandomUser
 
         //When
-        viewModel.getRandomUserListFromApiCall(numberOfTimesApiCalled)
+        coEvery {
+            viewModel.getRandomUserListFromApiCall(1)
+        }
 
         //Then
-        assert(allUsersRecievedValue == false)
-
+        assert(viewModel.getRandomUserList().isEmpty())
     }
 
 }

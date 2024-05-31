@@ -19,12 +19,11 @@ class ListOfUsersViewModel @Inject constructor(
 
     private var userListPrepared: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     private var allUsersRecieved: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-    private lateinit var listOfUsers: ArrayList<RandomUser>
+    private var listOfUsers: ArrayList<RandomUser> = ArrayList()
 
     override fun initializeViewModel(){
         this.userListPrepared.value = false
         this.allUsersRecieved.value = true
-        this.listOfUsers = ArrayList()
     }
 
     override fun getRandomUserListFromApiCall(numberOfUsers: Int) {
@@ -39,13 +38,13 @@ class ListOfUsersViewModel @Inject constructor(
 
                 if (result != null) {
 
-                    Log.d(logTag, "Usuario Recibido: ${result.getRandomUserFullName()}")
+                    //Log.d(logTag, "Usuario Recibido: ${result.getRandomUserFullName()}")
 
                         result?.let { listOfUsers.add(result) }
 
                         if (position + 1 == numberOfUsers) {
                             userListPrepared.postValue(true)
-                            Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
+                            //Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
 
                         }
                     } else {
