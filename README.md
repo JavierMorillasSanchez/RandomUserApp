@@ -16,7 +16,7 @@ Used libraries:
 - Glide
 - Kotlin-coroutines
 
-Lastest branch: RC-1.1.9
+Lastest branch: RC-1.1.10
 
 Next steps: 
 - migrate UI to Jetpack Compose
