@@ -9,13 +9,14 @@ Features:
 - Error handling
 
 Used libraries: 
-- retrofit
-- lottie
-- glide
-- kotlin-coroutines
+- Retrofit
+- Dagger Hilt
+- JUnit
+- Lottie
+- Glide
+- Kotlin-coroutines
 
-Lastest branch: RC-1.1.8
+Lastest branch: RC-1.1.9
 
 Next steps: 
-- creating unit test
-- update code to follow kotlin standars
+- migrate UI to Jetpack Compose
