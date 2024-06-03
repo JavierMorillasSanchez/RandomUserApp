@@ -42,6 +42,7 @@ class RandomUserRepository @Inject constructor(
 
     suspend fun clearDatabase(){
         randomUserDao.clearDatabase()
+        Log.d(logTag, "Base de datos limpiada")
     }
 
 

@@ -2,6 +2,7 @@ package com.example.randomuserapi.features.listofusers.listofusersviewmodel
 
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor
+import com.example.randomuserapi.calls.data.RandomUserRepository
 import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
 import com.example.randomuserapi.calls.domain.model.RandomUser
 import io.mockk.MockKAnnotations
@@ -30,7 +31,10 @@ class ListOfUsersViewModelTest{
     @RelaxedMockK
     private lateinit var randomUserUseCase: GetRandomUserUseCase
 
-    var viewModelMock = mockk<ListOfUsersViewModel>()
+    @RelaxedMockK
+    private lateinit var repository: RandomUserRepository
+
+    private var viewModelMock = mockk<ListOfUsersViewModel>()
 
     class InstantTaskExecutorRuleForJUnit5 : AfterEachCallback, BeforeEachCallback {
         override fun beforeEach(context: ExtensionContext?) {
@@ -57,7 +61,7 @@ class ListOfUsersViewModelTest{
     @BeforeEach
     fun onBefore(){
         MockKAnnotations.init(this)
-        viewModelMock = ListOfUsersViewModel(randomUserUseCase)
+        viewModelMock = ListOfUsersViewModel(randomUserUseCase, repository)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 

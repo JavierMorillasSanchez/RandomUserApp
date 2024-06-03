@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.randomuserapi.calls.data.RandomUserRepository
 import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
 import com.example.randomuserapi.calls.domain.model.RandomUser
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListOfUsersViewModel @Inject constructor(
-    private val randomUserUseCase: GetRandomUserUseCase
+    private val randomUserUseCase: GetRandomUserUseCase,
+    private val repository: RandomUserRepository
 ): ViewModel(), ListOfUsersViewModelInterface {
 
     private val logTag = this.javaClass.name
@@ -30,7 +32,7 @@ class ListOfUsersViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            clearDatabase()
+            repository.clearDatabase()
 
             for(position in 0 until numberOfUsers) {
 
@@ -62,7 +64,7 @@ class ListOfUsersViewModel @Inject constructor(
 
     override fun getRandomUserListFromDatabase(){
         viewModelScope.launch {
-            listOfUsers = randomUserUseCase.getRandomUserFromDatabase()
+            listOfUsers = repository.getRandomUserFromDatabase()
             userListPrepared.postValue(listOfUsers.isNotEmpty())
 
             Log.d(logTag, "Cantidad de Usuarios cargados de la base de datos: ${listOfUsers.size}")
@@ -78,7 +80,7 @@ class ListOfUsersViewModel @Inject constructor(
     }
 
     override fun clearDatabase(){
-        viewModelScope.launch { randomUserUseCase.clearRandomUserListFromDatabase() }
+        viewModelScope.launch { repository.clearDatabase() }
     }
 
     override fun checkIfAllUsersHasBeenRecieved(): MutableLiveData <Boolean> {

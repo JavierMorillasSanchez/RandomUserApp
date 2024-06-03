@@ -13,11 +13,6 @@ class GetRandomUserUseCase @Inject constructor(
 
     private val logTag = this.javaClass.name
 
-    suspend fun clearRandomUserListFromDatabase(){
-        repository.clearDatabase()
-        Log.d(logTag, "Base de datos limpiada")
-    }
-
     suspend fun getRandomUserFromApi(): RandomUser?{
 
         val randomUser = repository.getRandomUserFromApi()
