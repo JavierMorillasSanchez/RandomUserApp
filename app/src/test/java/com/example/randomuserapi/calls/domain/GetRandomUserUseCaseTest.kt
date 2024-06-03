@@ -84,4 +84,30 @@ class GetRandomUserUseCaseTest{
 
     }
 
+    @Test
+    fun `when making a number of calls and the api returns non null user, the user is stored`() = runBlocking{
+
+        val listOfUsers: ArrayList<RandomUser> = ArrayList()
+        val mockedUser: RandomUser? = MockedUser.mockedUser
+        val numberOfTimes = 5
+
+        //Given
+        coEvery {
+            repository.getRandomUserFromApi()
+        } returns mockedUser
+
+        //Then
+        coEvery {
+            repeat(numberOfTimes) {
+                getRandomUserUseCase()
+                mockedUser?.let { listOfUsers.add(mockedUser) }
+            }
+
+        }
+
+        //When
+        assert( listOfUsers.size == numberOfTimes)
+
+    }
+
 }
