@@ -67,7 +67,7 @@ class ListOfUsersViewModel @Inject constructor(
             listOfUsers = repository.getRandomUserFromDatabase()
             userListPrepared.postValue(listOfUsers.isNotEmpty())
 
-            //Log.d(logTag, "Cantidad de Usuarios cargados de la base de datos: ${listOfUsers.size}")
+            Log.d(logTag, "Cantidad de Usuarios cargados de la base de datos: ${listOfUsers.size}")
         }
     }
 
