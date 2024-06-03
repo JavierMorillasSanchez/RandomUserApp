@@ -13,7 +13,7 @@ class GetRandomUserUseCase @Inject constructor(
 
     private val logTag = this.javaClass.name
 
-    suspend fun getRandomUserFromApi(): RandomUser?{
+    suspend operator fun invoke(): RandomUser?{
 
         val randomUser = repository.getRandomUserFromApi()
 
@@ -23,12 +23,9 @@ class GetRandomUserUseCase @Inject constructor(
             )
         }
 
-        return randomUser
-    }
+        randomUser?.let { Log.d(logTag, "Usuario recibido de la llamada: ${randomUser.getRandomUserFullName()}") }
 
-    suspend fun getRandomUserFromDatabase(): ArrayList<RandomUser>{
-        Log.d(logTag, "Cantidad de Usuarios guardado: ${repository.getRandomUserFromDatabase().size}")
-        return  repository.getRandomUserFromDatabase()
+        return randomUser
     }
 
 }

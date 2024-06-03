@@ -75,7 +75,7 @@ class ListOfUsersViewModelTest{
 
         //Given
         coEvery {
-            randomUserUseCase.getRandomUserFromApi()
+            randomUserUseCase()
             viewModelMock.addUserRecievedToUserList(null)
         }
 

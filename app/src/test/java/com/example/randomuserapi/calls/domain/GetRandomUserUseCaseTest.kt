@@ -30,7 +30,7 @@ class GetRandomUserUseCaseTest{
         coEvery { repository.getRandomUserFromApi() } returns userRecieved
 
         //Then
-        val response = getRandomUserUseCase.getRandomUserFromApi()
+        val response = getRandomUserUseCase()
 
         //When
         assert(userRecieved == response )

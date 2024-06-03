@@ -36,7 +36,7 @@ class ListOfUsersViewModel @Inject constructor(
 
             for(position in 0 until numberOfUsers) {
 
-                val result = randomUserUseCase.getRandomUserFromApi()
+                val result = randomUserUseCase()
 
                 addUserRecievedToUserList(result)
 

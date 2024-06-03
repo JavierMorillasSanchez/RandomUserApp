@@ -31,7 +31,7 @@ class RandomUserRepository @Inject constructor(
             randomUserList.add(TransformObject.fromEntityToUser(randomUser))
         }
 
-        Log.d(logTag, "Tamaño Lista de Usuarios: ${randomUserList.size}")
+        Log.d(logTag, "Cantidad de Usuarios guardados: ${randomUserList.size}")
 
         return randomUserList
     }
