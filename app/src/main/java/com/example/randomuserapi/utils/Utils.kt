@@ -17,6 +17,25 @@ object IntentExtrasName{
     const val GET_USERS_FROM_DATABASE = "getUsersFromDatabase"
 }
 
+object MockedUser{
+    val mockedUser: RandomUser? = RandomUser(
+        "Don",
+        "Juan",
+        "Tenorio",
+        null,
+        null,
+        null,
+        "male",
+        "direcciónemail@mail.com",
+        "678 952 566",
+        null,
+        null,
+        null,
+        null,
+        null
+    )
+}
+
 object TransformObject{
 
     fun fromModelToUser(randomUserModel: RandomUserModel): RandomUser {
