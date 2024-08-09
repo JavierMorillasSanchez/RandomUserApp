@@ -11,12 +11,13 @@ Features:
 Used libraries: 
 - Retrofit
 - Dagger Hilt
+- Room
 - JUnit
 - Lottie
 - Glide
 - Kotlin-coroutines
 
-Lastest branch: RC-1.1.10
+Lastest branch: RC-1.1.11
 
 Next steps: 
 - migrate UI to Jetpack Compose
