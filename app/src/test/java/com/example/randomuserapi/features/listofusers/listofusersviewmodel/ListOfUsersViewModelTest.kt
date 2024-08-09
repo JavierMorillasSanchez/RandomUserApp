@@ -116,7 +116,7 @@ class ListOfUsersViewModelTest{
         viewModelMock.getRandomUserListFromDatabase()
 
         //Then
-        assert(userListNotPrepared == viewModelMock.getUserListPreparedValue().value)
+        assert(userListNotPrepared == viewModelMock.observeUserListPreparedValue().value)
     }
 
     @Test
@@ -135,7 +135,7 @@ class ListOfUsersViewModelTest{
         viewModelMock.getRandomUserListFromDatabase()
 
         //Then
-        assert(userListPrepared == viewModelMock.getUserListPreparedValue().value)
+        assert(userListPrepared == viewModelMock.observeUserListPreparedValue().value)
     }
 
 

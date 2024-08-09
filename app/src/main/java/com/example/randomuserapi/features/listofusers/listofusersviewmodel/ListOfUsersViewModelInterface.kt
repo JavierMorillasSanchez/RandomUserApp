@@ -1,15 +1,17 @@
 package com.example.randomuserapi.features.listofusers.listofusersviewmodel
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.example.randomuserapi.calls.domain.model.RandomUser
 
 interface ListOfUsersViewModelInterface {
     fun initializeViewModel()
-    fun getRandomUserListFromApiCall(numberOfUsers: Int)
+    fun getRandomUserListFromApiCall(numberOfUsers: Int, context: Context)
     fun getRandomUserListFromDatabase()
-    fun getUserListPreparedValue(): MutableLiveData<Boolean>
+    fun addUserRecievedToUserList(randomUser: RandomUser?)
     fun getRandomUserList(): ArrayList<RandomUser>
     fun clearDatabase()
-    fun checkIfAllUsersHasBeenRecieved(): MutableLiveData <Boolean>
-    fun addUserRecievedToUserList(randomUser: RandomUser?)
+    fun observeIfAllUsersHasBeenRecieved(): MutableLiveData <Boolean>
+    fun observeNetworkAvailability(): MutableLiveData <Boolean>
+    fun observeUserListPreparedValue(): MutableLiveData<Boolean>
 }

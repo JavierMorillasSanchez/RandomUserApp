@@ -2,7 +2,6 @@ package com.example.randomuserapi.features.listofusers.listofusersactivity
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -97,10 +96,10 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
             this.viewModel.getRandomUserListFromDatabase()
         } else {
             this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.NUMBER_OF_USERS)
-            this.viewModel.getRandomUserListFromApiCall(numberOfUsersToShow)
+            this.viewModel.getRandomUserListFromApiCall(numberOfUsersToShow,this)
         }
 
-        viewModel.getUserListPreparedValue().observe(this, Observer<Boolean> {
+        viewModel.observeUserListPreparedValue().observe(this, Observer<Boolean> {
             if(it != null){
 
                 arrayOfUsers.addAll(this.viewModel.getRandomUserList())
@@ -117,9 +116,15 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
 
         })
 
-        this.viewModel.checkIfAllUsersHasBeenRecieved().observe(this) {
+        this.viewModel.observeIfAllUsersHasBeenRecieved().observe(this) {
             if (!it) {
                 Toast.makeText(applicationContext, R.string.toast_showing_not_all_users_recieved, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        this.viewModel.observeNetworkAvailability().observe(this) {
+            if (!it) {
+                showErrorWhileLoadingUsers()
             }
         }
     }

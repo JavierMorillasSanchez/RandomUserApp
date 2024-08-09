@@ -1,5 +1,6 @@
 package com.example.randomuserapi.features.listofusers.listofusersviewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,10 @@ import com.example.randomuserapi.calls.data.RandomUserRepository
 import com.example.randomuserapi.calls.domain.GetRandomUserUseCase
 import com.example.randomuserapi.calls.domain.model.RandomUser
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,16 +26,27 @@ class ListOfUsersViewModel @Inject constructor(
 
     private var userListPrepared: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     private var allUsersRecieved: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+    private var isNetworkAvailable: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     private var listOfUsers: ArrayList<RandomUser> = ArrayList()
 
     override fun initializeViewModel(){
         this.userListPrepared.value = false
         this.allUsersRecieved.value = true
+        this.isNetworkAvailable.value = true
     }
 
-    override fun getRandomUserListFromApiCall(numberOfUsers: Int) {
+    override fun getRandomUserListFromApiCall(numberOfUsers: Int, context: Context) {
 
-        viewModelScope.launch {
+        val fetchRandomUserData = Job()
+
+        val errorHandler = CoroutineExceptionHandler{ coroutineContext, throwable ->
+            println("Error ---> ${throwable.message}")
+            isNetworkAvailable.postValue(false)
+        }
+
+        val scope = CoroutineScope(fetchRandomUserData + Dispatchers.Main)
+
+        scope.launch(errorHandler){
 
             repository.clearDatabase()
 
@@ -40,17 +56,16 @@ class ListOfUsersViewModel @Inject constructor(
 
                 addUserRecievedToUserList(result)
 
-                    if (position + 1 == numberOfUsers) {
+                if (position + 1 == numberOfUsers) {
 
-                        userListPrepared.postValue(true)
+                    userListPrepared.postValue(true)
 
-                        checkIfAllUsersHasBeenRecieved()
+                    observeIfAllUsersHasBeenRecieved()
 
-                        Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
-                    }
-
+                    Log.d(logTag, "Cantidad de Usuarios recibidos: ${listOfUsers.size}")
                 }
             }
+        }
     }
 
     override fun addUserRecievedToUserList(randomUser: RandomUser?){
@@ -75,7 +90,7 @@ class ListOfUsersViewModel @Inject constructor(
         return this.listOfUsers
     }
 
-    override fun getUserListPreparedValue(): MutableLiveData <Boolean> {
+    override fun observeUserListPreparedValue(): MutableLiveData <Boolean> {
         return this.userListPrepared
     }
 
@@ -83,8 +98,12 @@ class ListOfUsersViewModel @Inject constructor(
         viewModelScope.launch { repository.clearDatabase() }
     }
 
-    override fun checkIfAllUsersHasBeenRecieved(): MutableLiveData <Boolean> {
+    override fun observeIfAllUsersHasBeenRecieved(): MutableLiveData <Boolean> {
         return this.allUsersRecieved
+    }
+
+    override fun observeNetworkAvailability(): MutableLiveData <Boolean> {
+        return this.isNetworkAvailable
     }
 
 }
