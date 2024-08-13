@@ -65,9 +65,6 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-rc01'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     //Testing
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
@@ -76,6 +73,7 @@ dependencies {
     testImplementation "io.mockk:mockk:1.12.2"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0"
     testImplementation "androidx.arch.core:core-testing:2.2.0"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
     //Dagger Hilt
     implementation 'com.google.dagger:hilt-android:2.44'
@@ -92,6 +90,7 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     //Lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
