@@ -23,7 +23,7 @@ class GetRandomUserUseCase @Inject constructor(
             )
         }
 
-        //randomUser?.let { Log.d(logTag, "Usuario recibido de la llamada: ${randomUser.getRandomUserFullName()}") }
+        randomUser?.let { Log.d(logTag, "Usuario recibido de la llamada: ${randomUser.getRandomUserFullName()}") }
 
         return randomUser
     }
