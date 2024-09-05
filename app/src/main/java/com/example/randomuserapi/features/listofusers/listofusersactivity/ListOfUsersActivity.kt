@@ -96,7 +96,7 @@ class ListOfUsersActivity : AppCompatActivity(), ListOfUsersActivityInterface {
             this.viewModel.getRandomUserListFromDatabase()
         } else {
             this.numberOfUsersToShow = intent.extras!!.getInt(IntentExtrasName.NUMBER_OF_USERS)
-            this.viewModel.getRandomUserListFromApiCall(numberOfUsersToShow,this)
+            this.viewModel.getRandomUserListFromApiCall(numberOfUsersToShow)
         }
 
         viewModel.observeUserListPreparedValue().observe(this, Observer<Boolean> {

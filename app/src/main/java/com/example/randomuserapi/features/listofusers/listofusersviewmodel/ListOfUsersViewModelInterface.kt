@@ -6,7 +6,7 @@ import com.example.randomuserapi.calls.domain.model.RandomUser
 
 interface ListOfUsersViewModelInterface {
     fun initializeViewModel()
-    fun getRandomUserListFromApiCall(numberOfUsers: Int, context: Context)
+    fun getRandomUserListFromApiCall(numberOfUsers: Int)
     fun getRandomUserListFromDatabase()
     fun addUserRecievedToUserList(randomUser: RandomUser?)
     fun getRandomUserList(): ArrayList<RandomUser>

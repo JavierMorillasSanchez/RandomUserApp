@@ -35,7 +35,7 @@ class ListOfUsersViewModel @Inject constructor(
         this.isNetworkAvailable.value = true
     }
 
-    override fun getRandomUserListFromApiCall(numberOfUsers: Int, context: Context) {
+    override fun getRandomUserListFromApiCall(numberOfUsers: Int) {
 
         val fetchRandomUserData = Job()
 
